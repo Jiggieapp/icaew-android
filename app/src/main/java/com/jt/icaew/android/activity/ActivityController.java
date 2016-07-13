@@ -2,7 +2,8 @@ package com.jt.icaew.android.activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 
 /**
  * Created by Wandy on 6/30/2016.
@@ -10,14 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 public class ActivityController extends Activity{
 
     private Context context;
-    AppCompatActivity activity;
-    public ActivityController(AppCompatActivity a)
+    Activity activity;
+
+    public ActivityController(Activity a)
     {
         super();
         this.activity = a;
     }
 
-    protected AppCompatActivity getActivity()
+    protected Activity getActivity()
     {
         context = activity.getApplicationContext();
         return activity;
@@ -28,6 +30,12 @@ public class ActivityController extends Activity{
         return context;
     }
 
-
+    public void redirect(Class<? extends Activity> target)
+    {
+        Intent i = new Intent(getActivity().getApplicationContext()
+                , target);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getActivity().getApplicationContext().startActivity(i);
+    }
 
 }

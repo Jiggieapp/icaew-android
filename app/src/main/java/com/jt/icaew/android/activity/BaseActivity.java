@@ -22,7 +22,7 @@ public abstract class BaseActivity extends AbstractBaseActivity {
         return activityController;
     }
 
-    protected AppCompatActivity getActivity()
+    protected Activity getActivity()
     {
         return getActivityController().getActivity();
     }

@@ -10,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jt.icaew.android.R;
+import com.jt.icaew.android.activity.BaseFragment;
 import com.jt.icaew.android.activity.program.adapter.ProgramAdapter;
+import com.jt.icaew.android.activity.program.detail.ProgramDetailActivity;
+import com.jt.icaew.android.network.program.ProgramResult;
 import com.jt.icaew.android.utils.Utils;
 
 import butterknife.BindView;
@@ -19,7 +22,8 @@ import butterknife.ButterKnife;
 /**
  * Created by Wandy on 6/30/2016.
  */
-public class ProgramFragment extends Fragment implements ProgramView{
+public class ProgramFragment extends BaseFragment
+        implements ProgramView.OnFinishGetProgramListener, ProgramAdapter.OnProgramSelectedListener {
 
     private final String TAG = ProgramFragment.class.getSimpleName();
     ProgramPresenterImplementation implementation = new ProgramPresenterImplementation(this);
@@ -46,10 +50,14 @@ public class ProgramFragment extends Fragment implements ProgramView{
     @Override
     public void onFinishGetProgram(ProgramResult programResult) {
         //Utils.d(TAG, programResult.data[0].title);
-        adapter = new ProgramAdapter(this.getContext(), programResult.data);
-        Utils.d(TAG, programResult.data.size() + "");
+        adapter = new ProgramAdapter(this.getContext(), programResult.data, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(super.getContext());
         this.recyclerProgram.setLayoutManager(layoutManager);
         recyclerProgram.setAdapter(adapter);
+    }
+
+    @Override
+    public void onProgramSelected(String programId) {
+        getActivityController().redirect(ProgramDetailActivity.class);
     }
 }

@@ -17,5 +17,5 @@ public abstract class AbstractBaseActivity extends AppCompatActivity {
         onCreate();
     }
 
-    abstract void onCreate();
+    public abstract void onCreate();
 }
