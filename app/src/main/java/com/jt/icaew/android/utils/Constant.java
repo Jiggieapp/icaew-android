@@ -13,5 +13,6 @@ public class Constant {
     public final static String URL_COUNTRY = BASE_URL + "country";
     public final static String URL_ABOUT = BASE_URL + "about";
     public final static String URL_CONTACT = BASE_URL + "contact";
+    public final static String URL_UNIVERSITY = BASE_URL + "country";
 
 }
