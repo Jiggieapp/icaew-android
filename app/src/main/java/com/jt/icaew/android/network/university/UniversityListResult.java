@@ -39,8 +39,9 @@ public final class UniversityListResult {
         public final String email;
         public final String phone;
         public final String address;
+        public final String description;
 
-        public Data(int id, int country_id, String name, String image, String created_at, String updated_at, String country_name, String email, String phone, String address){
+        public Data(int id, int country_id, String name, String image, String created_at, String updated_at, String country_name, String email, String phone, String address, String description){
             this.id = id;
             this.country_id = country_id;
             this.name = name;
@@ -51,6 +52,7 @@ public final class UniversityListResult {
             this.email = email;
             this.phone = phone;
             this.address = address;
+            this.description = description;
         }
 
         public int getId() {
@@ -91,6 +93,10 @@ public final class UniversityListResult {
 
         public String getAddress() {
             return address;
+        }
+
+        public String getDescription() {
+            return description;
         }
     }
 }
