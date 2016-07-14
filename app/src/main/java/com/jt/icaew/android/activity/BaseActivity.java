@@ -31,4 +31,10 @@ public abstract class BaseActivity extends AbstractBaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
+    protected Bundle getBundle()
+    {
+        Bundle bundle = getIntent().getExtras().getBundle("bundle");
+        return bundle;
+    }
 }

@@ -20,7 +20,7 @@
             android:layout_width="@dimen/circle_width"
             android:layout_height="@dimen/circle_width"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/circle_red"
+            android:background="@drawable/circle_blue"
             android:layout_marginRight="@dimen/padding_standard_half"
             android:gravity="center_horizontal|center_vertical"
             android:textColor="@android:color/white"

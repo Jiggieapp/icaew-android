@@ -1,19 +1,26 @@
 package com.jt.icaew.android.activity.events;
 
 import com.jt.icaew.android.network.OnResponseListener;
+import com.jt.icaew.android.network.event.EventDetailResult;
 import com.jt.icaew.android.network.event.EventManager;
 import com.jt.icaew.android.network.event.EventResult;
 
 /**
  * Created by Wandy on 7/11/2016.
  */
-public class EventPresenterImplementation implements EventPresenter {
+public class EventPresenterImplementation implements EventPresenter.GetEvents, EventPresenter.GetEventDetailListener {
 
-    private EventView eventView;
+    private EventView.OnFinishGetCountryListener onFinishgetCountryListener;
+    private EventView.OnFinishGetEventDetailListener onFinishGetEventDetailListener;
 
-    public EventPresenterImplementation(EventView eventView)
+    public EventPresenterImplementation()
     {
-        this.eventView = eventView;
+
+    }
+
+    public EventPresenterImplementation(EventView.OnFinishGetCountryListener onFinishgetCountryListener)
+    {
+        this.onFinishgetCountryListener = onFinishgetCountryListener;
     }
 
     @Override
@@ -22,7 +29,7 @@ public class EventPresenterImplementation implements EventPresenter {
             @Override
             public void onSuccess(Object object) {
                 EventResult eventResult = (EventResult) object;
-                eventView.onFinishGetCountry(eventResult);
+                onFinishgetCountryListener.onFinishGetCountry(eventResult);
             }
 
             @Override
@@ -30,5 +37,31 @@ public class EventPresenterImplementation implements EventPresenter {
 
             }
         });
+    }
+
+    @Override
+    public void getEventDetail(final String countryId) {
+        EventManager.getEventDetail(countryId, new OnResponseListener() {
+            @Override
+            public void onSuccess(Object object) {
+                EventDetailResult result = (EventDetailResult) object;
+                onFinishGetEventDetailListener.onFinishGetEventDetailListener(result);
+            }
+
+            @Override
+            public void onFailure(int responseCode, String message) {
+
+            }
+        });
+    }
+
+    public void setOnFinishGetCountryListener(EventView.OnFinishGetCountryListener listener)
+    {
+        this.onFinishgetCountryListener = listener;
+    }
+
+    public void setOnFinishGetEventDetailListener(EventView.OnFinishGetEventDetailListener listener)
+    {
+        this.onFinishGetEventDetailListener = listener;
     }
 }

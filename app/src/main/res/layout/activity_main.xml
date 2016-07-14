@@ -46,6 +46,7 @@
                 android:layout_gravity="left"
                 android:paddingRight="@dimen/padding_standard_half"
                 android:text="A world leader of the accountancy and finance profession"
+                android:textSize="@dimen/text_size_title_bar"
                 android:textColor="@android:color/white" />
         </android.support.v7.widget.Toolbar>
 

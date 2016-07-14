@@ -6,4 +6,6 @@
     <string name="phone_university">Phone : %1$s</string>
     <string name="facebook_university">Facebook : %1$s</string>
     <string name="website_university">Email : %1$s</string>
+
+    <string name="events_in">Events in %1$s</string>
 </resources>

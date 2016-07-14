@@ -44,8 +44,9 @@ public class EventCountryAdapter extends RecyclerView.Adapter<EventCountryAdapte
 
     @Override
     public void onBindViewHolder(EventCountryViewHolder holder, int position) {
-        final String name = data.get(position).name;
-        final String url = data.get(position).image;
+        holder.data = data.get(position);
+        final String name = holder.data.name;
+        final String url = holder.data.image;
         holder.lblCountryName.setText(name);
 
         Glide.with(context).load(url).into(holder.imageCountry);

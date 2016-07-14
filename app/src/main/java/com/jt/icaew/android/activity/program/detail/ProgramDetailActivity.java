@@ -37,7 +37,7 @@ public class ProgramDetailActivity extends BaseActivity
     @Override
     public void onCreate() {
         setContentView(R.layout.activity_program_detail);
-
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if(toolbar != null) {
             super.setSupportActionBar(toolbar);

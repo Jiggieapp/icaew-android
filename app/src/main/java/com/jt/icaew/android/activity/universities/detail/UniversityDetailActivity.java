@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.jt.icaew.android.R;
+import com.jt.icaew.android.activity.BaseActivity;
 import com.jt.icaew.android.activity.universities.UniversityPresenterImplementation;
 import com.jt.icaew.android.activity.universities.UniversityView;
 import com.jt.icaew.android.network.university.UniversityListResult;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
 /**
  * Created by LTE on 7/13/2016.
  */
-public class UniversityDetailActivity extends AppCompatActivity implements UniversityView.onFinishGetUniversityDetailListener {
+public class UniversityDetailActivity extends BaseActivity implements UniversityView.onFinishGetUniversityDetailListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -41,8 +42,7 @@ public class UniversityDetailActivity extends AppCompatActivity implements Unive
     private UniversityPresenterImplementation implementation;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate() {
         setContentView(R.layout.activity_university_detail);
         ButterKnife.bind(this);
         implementation = new UniversityPresenterImplementation();

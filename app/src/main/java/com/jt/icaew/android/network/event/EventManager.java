@@ -13,6 +13,14 @@ import retrofit2.Response;
  */
 public class EventManager extends BaseNetworkManager {
 
+    private static EventInterface instance;
+    private static EventInterface getInstance()
+    {
+        if(instance == null)
+            instance = getRetrofit().create(EventInterface.class);
+        return instance;
+    }
+
     public static void getEvent(final OnResponseListener onResponseListener)
     {
         getEvent(new CustomCallback() {
@@ -33,11 +41,21 @@ public class EventManager extends BaseNetworkManager {
         getInstance().getCountry().enqueue(callback);
     }
 
-    private static EventInterface instance;
-    private static EventInterface getInstance()
-    {
-        if(instance == null)
-            instance = getRetrofit().create(EventInterface.class);
-        return instance;
+    public static void getEventDetail(final String countryId, final OnResponseListener onResponseListener) {
+        getEventDetail(countryId, new CustomCallback() {
+            @Override
+            public void onCustomCallbackResponse(Response response) {
+                onResponseListener.onSuccess(response.body());
+            }
+
+            @Override
+            public void onCustomCallbackFailure(String t) {
+
+            }
+        });
+    }
+
+    private static void getEventDetail(final String id, CustomCallback callback) {
+        getInstance().getEventDetail(id).enqueue(callback);
     }
 }
