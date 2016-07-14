@@ -56,7 +56,7 @@ public class UniversityDetailActivity extends BaseActivity implements University
             super.setSupportActionBar(toolbar);
             final String programName = getIntent().getStringExtra(Constant.COUNTRY_NAME);
 
-            getSupportActionBar().setTitle(programName);
+            getSupportActionBar().setTitle(programName.toUpperCase());
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }

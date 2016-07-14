@@ -19,12 +19,13 @@
                 android:layout_alignParentTop="true"
                 android:scaleType="fitXY"/>
 
-            <TextView
+            <com.uncopt.android.widget.text.justify.JustifiedTextView
                 android:id="@+id/lbl_about_us"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/img_banner"
-                android:layout_margin="8dp"/>
+                android:layout_margin="8dp"
+                android:textSize="14sp"/>
         </RelativeLayout>
 
     </ScrollView>
