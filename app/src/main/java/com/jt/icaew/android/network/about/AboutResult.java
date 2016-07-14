@@ -14,15 +14,27 @@ public final class AboutResult {
         this.data = data;
     }
 
+    public long getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Data getData() {
+        return data;
+    }
+
     public static final class Data {
         public final long id;
         public final String title;
         public final String description;
-        public final Image image;
-        public final Created_at created_at;
+        public final String image;
+        public final String created_at;
         public final String updated_at;
 
-        public Data(long id, String title, String description, Image image, Created_at created_at, String updated_at){
+        public Data(long id, String title, String description, String image, String created_at, String updated_at){
             this.id = id;
             this.title = title;
             this.description = description;
@@ -31,16 +43,28 @@ public final class AboutResult {
             this.updated_at = updated_at;
         }
 
-        public static final class Image {
-
-            public Image(){
-            }
+        public long getId() {
+            return id;
         }
 
-        public static final class Created_at {
+        public String getTitle() {
+            return title;
+        }
 
-            public Created_at(){
-            }
+        public String getDescription() {
+            return description;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public String getCreated_at() {
+            return created_at;
+        }
+
+        public String getUpdated_at() {
+            return updated_at;
         }
     }
 }
