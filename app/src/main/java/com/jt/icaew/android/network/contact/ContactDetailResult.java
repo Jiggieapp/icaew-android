@@ -1,14 +1,16 @@
 package com.jt.icaew.android.network.contact;
 
+import java.util.ArrayList;
+
 /**
  * Created by Wandy on 7/13/2016.
  */
 public final class ContactDetailResult {
     public final long code;
     public final String message;
-    public final Data data;
+    public final ArrayList<Data> data;
 
-    public ContactDetailResult(long code, String message, Data data){
+    public ContactDetailResult(long code, String message, ArrayList<Data> data){
         this.code = code;
         this.message = message;
         this.data = data;

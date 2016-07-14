@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by LTE on 7/13/2016.
  */
-public final class UniversityListResult {
+public final class UniversityListResult   {
     public final int code;
     public final String message;
     public ArrayList<Data> data = new ArrayList<>();

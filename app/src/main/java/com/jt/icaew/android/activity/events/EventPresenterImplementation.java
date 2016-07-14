@@ -3,7 +3,7 @@ package com.jt.icaew.android.activity.events;
 import com.jt.icaew.android.network.OnResponseListener;
 import com.jt.icaew.android.network.event.EventDetailResult;
 import com.jt.icaew.android.network.event.EventManager;
-import com.jt.icaew.android.network.event.EventResult;
+import com.jt.icaew.android.network.event.CountryResult;
 
 /**
  * Created by Wandy on 7/11/2016.
@@ -28,8 +28,8 @@ public class EventPresenterImplementation implements EventPresenter.GetEvents, E
         EventManager.getEvent(new OnResponseListener() {
             @Override
             public void onSuccess(Object object) {
-                EventResult eventResult = (EventResult) object;
-                onFinishgetCountryListener.onFinishGetCountry(eventResult);
+                CountryResult countryResult = (CountryResult) object;
+                onFinishgetCountryListener.onFinishGetCountry(countryResult);
             }
 
             @Override

@@ -85,15 +85,5 @@ public class UniversityDetailActivity extends BaseActivity implements University
         finish();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-            default:
-                break;
-        }
-        return true;
-    }
+
 }

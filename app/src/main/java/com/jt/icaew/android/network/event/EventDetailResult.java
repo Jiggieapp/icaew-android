@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by Wandy on 7/14/2016.
  */
-public final class EventDetailResult {
+public final class EventDetailResult   {
     public final long code;
     public final String message;
     public final ArrayList<Data> data;

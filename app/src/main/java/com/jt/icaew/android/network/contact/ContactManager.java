@@ -3,6 +3,7 @@ package com.jt.icaew.android.network.contact;
 import com.jt.icaew.android.network.BaseNetworkManager;
 import com.jt.icaew.android.network.CustomCallback;
 import com.jt.icaew.android.network.OnResponseListener;
+import com.jt.icaew.android.utils.Utils;
 
 import retrofit2.Response;
 
@@ -19,7 +20,7 @@ public class ContactManager extends BaseNetworkManager{
         return instance;
     }
 
-    public static void getContactUsCountry(final OnResponseListener onResponseListener)
+    /*public static void getContactUsCountry(final OnResponseListener onResponseListener)
     {
         getContactUsCountry(new CustomCallback() {
             @Override
@@ -32,12 +33,12 @@ public class ContactManager extends BaseNetworkManager{
 
             }
         });
-    }
+    }*/
 
-    private static void getContactUsCountry(CustomCallback customCallback)
+    /*private static void getContactUsCountry(CustomCallback customCallback)
     {
         getInstance().getContactUsCountry().enqueue(customCallback);
-    }
+    }*/
 
     public static void getContactUsDetail(final String id, final OnResponseListener onResponseListener)
     {
@@ -49,13 +50,13 @@ public class ContactManager extends BaseNetworkManager{
 
             @Override
             public void onCustomCallbackFailure(String t) {
-
             }
         });
     }
 
     private static void getContactUsDetail(final String id, final CustomCallback callback)
     {
+        Utils.d("code", "oke galore 2");
         getInstance().getContactUsDetail(id).enqueue(callback);
     }
 }

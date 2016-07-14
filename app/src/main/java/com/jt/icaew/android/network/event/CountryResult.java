@@ -5,12 +5,12 @@ import java.util.ArrayList;
 /**
  * Created by Wandy on 7/11/2016.
  */
-public final class EventResult {
+public final class CountryResult   {
     public final long code;
     public final String message;
     public final ArrayList<Data> data;
 
-    public EventResult(long code, String message, ArrayList<Data> data){
+    public CountryResult(long code, String message, ArrayList<Data> data){
         this.code = code;
         this.message = message;
         this.data = data;

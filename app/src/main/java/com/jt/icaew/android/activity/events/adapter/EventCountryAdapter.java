@@ -10,9 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jt.icaew.android.R;
-import com.jt.icaew.android.activity.contact.adapter.ContactUsCountryAdapter;
 import com.jt.icaew.android.listener.OnViewSelectedListener;
-import com.jt.icaew.android.network.event.EventResult;
+import com.jt.icaew.android.network.event.CountryResult;
 
 import java.util.ArrayList;
 
@@ -25,10 +24,10 @@ import butterknife.ButterKnife;
 public class EventCountryAdapter extends RecyclerView.Adapter<EventCountryAdapter.EventCountryViewHolder>{
 
     Context context;
-    ArrayList<EventResult.Data> data;
+    ArrayList<CountryResult.Data> data;
     OnViewSelectedListener onViewSelectedListener;
 
-    public EventCountryAdapter(Context context, ArrayList<EventResult.Data> data, OnViewSelectedListener listener)
+    public EventCountryAdapter(Context context, ArrayList<CountryResult.Data> data, OnViewSelectedListener listener)
     {
         this.context = context;
         this.data = data;
@@ -66,7 +65,7 @@ public class EventCountryAdapter extends RecyclerView.Adapter<EventCountryAdapte
         @BindView(R.id.lbl_country_name)
         TextView lblCountryName;
 
-        EventResult.Data data;
+        CountryResult.Data data;
         OnViewSelectedListener onViewSelectedListener;
 
         public EventCountryViewHolder(View itemView, OnViewSelectedListener listener) {

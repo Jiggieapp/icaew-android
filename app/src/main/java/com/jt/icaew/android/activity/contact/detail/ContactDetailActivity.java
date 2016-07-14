@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.jt.icaew.android.R;
 import com.jt.icaew.android.activity.BaseActivity;
 import com.jt.icaew.android.activity.contact.ContactPresenterImplementation;
 import com.jt.icaew.android.activity.contact.ContactView;
 import com.jt.icaew.android.network.contact.ContactDetailResult;
 import com.jt.icaew.android.utils.Constant;
-import com.jt.icaew.android.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,35 +44,41 @@ public class ContactDetailActivity extends BaseActivity implements ContactView.O
     private final String TAG = ContactDetailActivity.class.getSimpleName();
     ContactPresenterImplementation implementation;
 
+    long countryId;
+
     @Override
     public void onCreate() {
-        setContentView(R.layout.activity_country_detail);
+        setContentView(R.layout.activity_contact_detail);
         ButterKnife.bind(this);
-        Bundle bundle = getIntent().getBundleExtra("bundle");
-        final long countryId = bundle.getLong(Constant.PARAM_COUNTRY_ID);
-        final String countryName = bundle.getString(Constant.PARAM_COUNTRY_NAME);
+        Bundle bundle = getBundle();
+
         if(toolbar != null)
         {
             setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle(countryName);
+            if(bundle != null)
+            {
+                countryId = bundle.getLong(Constant.PARAM_COUNTRY_ID);
+                final String countryName = bundle.getString(Constant.PARAM_COUNTRY_NAME);
+                getSupportActionBar().setTitle(countryName);
+            }
+
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         implementation = new ContactPresenterImplementation();
         implementation.setOnFinishGetContactDetailListener(this);
-        Utils.d(TAG, "country id " + countryId);
         implementation.getContactUsDetail(countryId + "");
     }
 
     @Override
     public void onFinishGetContactDetail(ContactDetailResult contactDetailResult) {
-        //Utils.d(TAG, "hore " + new Gson().toJson(contactDetailResult.data));
-        lblUniversityAddress.setText(contactDetailResult.data.getAddress());
-        lblUniversityEmail.setText(getResources().getString(R.string.email_university, contactDetailResult.data.getEmail()));
-        lblUniversityPhone.setText(getResources().getString(R.string.phone_university, contactDetailResult.data.getTelp()));
-        lblUniversityFacebook.setText(getResources().getString(R.string.facebook_university, contactDetailResult.data.getFacebook()));
-        lblUniversityWebsite.setText(getResources().getString(R.string.website_university, contactDetailResult.data.getWebsite()));
+        final ContactDetailResult.Data dataa = contactDetailResult.data.get(0);
+        lblUniversityAddress.setText(dataa.getAddress());
+        lblUniversityEmail.setText(getResources().getString(R.string.email_university, dataa.getEmail()));
+        lblUniversityPhone.setText(getResources().getString(R.string.phone_university, dataa.getTelp()));
+        lblUniversityFacebook.setText(getResources().getString(R.string.facebook_university, dataa.getFacebook()));
+        lblUniversityWebsite.setText(getResources().getString(R.string.website_university, dataa.getWebsite()));
     }
 
     private Context getContext()

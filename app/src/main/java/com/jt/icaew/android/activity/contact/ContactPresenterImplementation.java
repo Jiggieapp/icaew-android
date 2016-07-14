@@ -13,21 +13,20 @@ public class ContactPresenterImplementation implements ContactPresenter {
 
     private ContactView.OnFinishGetContactCountryListener contactListener;
     private ContactView.OnFinishGetContactDetailListener contactDetailListener;
+    private final static String TAG = ContactPresenterImplementation.class.getSimpleName();
 
-    public void setOnFinishGetContactCountryListener(ContactView.OnFinishGetContactCountryListener listener)
-    {
+    public void setOnFinishGetContactCountryListener(ContactView.OnFinishGetContactCountryListener listener) {
         this.contactListener = listener;
     }
 
-    public void setOnFinishGetContactDetailListener(ContactView.OnFinishGetContactDetailListener listener)
-    {
+    public void setOnFinishGetContactDetailListener(ContactView.OnFinishGetContactDetailListener listener) {
         this.contactDetailListener = listener;
     }
 
 
     @Override
     public void getContactCountry() {
-        ContactManager.getContactUsCountry(new OnResponseListener() {
+        /*ContactManager.getContactUsCountry(new OnResponseListener() {
             @Override
             public void onSuccess(Object object) {
                 contactListener.onFinishGetContactCountry((ContactResult) object);
@@ -37,7 +36,7 @@ public class ContactPresenterImplementation implements ContactPresenter {
             public void onFailure(int responseCode, String message) {
 
             }
-        });
+        });*/
     }
 
     @Override

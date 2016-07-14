@@ -55,7 +55,6 @@ public class UniversitiesFragment extends Fragment implements UniversityView.onF
 
     @Override
     public void onCountrySelected(String countryId, String countryName) {
-        Log.d(TAG, countryId);
         Intent intent = new Intent(getActivity(), UniversityDetailActivity.class);
         intent.putExtra(Constant.COUNTRY_ID, countryId);
         intent.putExtra(Constant.COUNTRY_NAME, countryName);

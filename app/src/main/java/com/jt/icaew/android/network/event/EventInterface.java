@@ -11,7 +11,7 @@ import retrofit2.http.Query;
  */
 public interface EventInterface {
     @GET(Constant.URL_COUNTRY)
-    Call<EventResult> getCountry();
+    Call<CountryResult> getCountry();
 
     @GET(Constant.URL_EVENT_DETAIL)
     Call<EventDetailResult> getEventDetail(@Query("country_id") String id);

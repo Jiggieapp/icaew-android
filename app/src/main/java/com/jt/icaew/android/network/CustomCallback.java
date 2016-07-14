@@ -5,6 +5,12 @@ package com.jt.icaew.android.network;
  */
 
 
+import com.google.gson.Gson;
+import com.jt.icaew.android.utils.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.net.SocketTimeoutException;
 
 import retrofit2.Call;
@@ -21,19 +27,29 @@ public abstract class CustomCallback implements Callback {
     @Override
     public void onResponse(Call call, Response response) {
         final int responseCode = response.code();
-        if(responseCode == 401) //error
+        if (responseCode == 401) //error
         {
 
         }
-        /*else if(responseCode == 400)
+        /*else if(responseCode == 404)
         {
-            onCustomCallbackFailure();
+            onCustomCallbackFailure("");
         }*/
-        else onCustomCallbackResponse(response);
-        //this.response = response;
+        else {
+            String obj = new Gson().toJson(response.body());
+            try {
+                JSONObject temp = new JSONObject(obj);
+                if(Integer.parseInt(temp.get("code").toString()) == 404 || Integer.parseInt(temp.get("code").toString()) == 400)
+                {
+                    onCustomCallbackFailure("");
+                }
+                else onCustomCallbackResponse(response);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
-
-
     @Override
     public void onFailure(Call call, Throwable t) {
         String d = t.toString();

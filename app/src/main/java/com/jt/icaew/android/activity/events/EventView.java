@@ -1,7 +1,7 @@
 package com.jt.icaew.android.activity.events;
 
 import com.jt.icaew.android.network.event.EventDetailResult;
-import com.jt.icaew.android.network.event.EventResult;
+import com.jt.icaew.android.network.event.CountryResult;
 
 /**
  * Created by Wandy on 7/11/2016.
@@ -9,7 +9,7 @@ import com.jt.icaew.android.network.event.EventResult;
 public interface EventView {
     interface OnFinishGetCountryListener
     {
-        void onFinishGetCountry(EventResult eventResult);
+        void onFinishGetCountry(CountryResult countryResult);
     }
 
     interface OnFinishGetEventDetailListener

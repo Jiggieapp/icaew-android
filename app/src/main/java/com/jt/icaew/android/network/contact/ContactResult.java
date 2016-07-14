@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by Wandy on 7/12/2016.
  */
-public class ContactResult {
+public class ContactResult   {
     public final long code;
     public final String message;
     public final ArrayList<Data> data;

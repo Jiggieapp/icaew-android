@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
+
+import com.jt.icaew.android.R;
 
 import butterknife.ButterKnife;
 
@@ -36,5 +39,24 @@ public abstract class BaseActivity extends AbstractBaseActivity {
     {
         Bundle bundle = getIntent().getExtras().getBundle("bundle");
         return bundle;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.onBackPressed();
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //super.overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+        //super.overridePendingTransition (R.anim.pull_in_left, R.anim.hold);
     }
 }

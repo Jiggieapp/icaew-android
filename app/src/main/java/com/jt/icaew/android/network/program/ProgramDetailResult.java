@@ -3,7 +3,7 @@ package com.jt.icaew.android.network.program;
 /**
  * Created by Wandy on 7/12/2016.
  */
-public final class ProgramDetailResult {
+public final class ProgramDetailResult   {
     public final long code;
     public final String message;
     public final Data data;

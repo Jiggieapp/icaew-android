@@ -7,6 +7,7 @@ import com.jt.icaew.android.network.university.UniversityListResult;
 import com.jt.icaew.android.network.university.UniversityManager;
 import com.jt.icaew.android.network.university.UniversityResult;
 import com.jt.icaew.android.utils.Constant;
+import com.jt.icaew.android.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -45,10 +46,10 @@ public class UniversityPresenterImplementation implements UniversityPresenter {
                     if(arrData.size()>0){
                         universityCountryView.onFinishGetCountry(universityResult);
                     }else{
-                        Log.d(TAG, universityResult.getMessage());
+                        Utils.d(TAG, universityResult.getMessage());
                     }
                 }else{
-                    Log.d(TAG, universityResult.getMessage());
+                    Utils.d(TAG, universityResult.getMessage());
                 }
             }
 

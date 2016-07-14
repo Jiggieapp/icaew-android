@@ -16,6 +16,7 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="android:windowActionModeOverlay">true</item>
         <item name="android:textViewStyle">@style/MyTextView</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">
