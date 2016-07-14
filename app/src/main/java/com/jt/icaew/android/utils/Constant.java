@@ -13,6 +13,10 @@ public class Constant {
     public final static String URL_COUNTRY = BASE_URL + "country";
     public final static String URL_ABOUT = BASE_URL + "about";
     public final static String URL_CONTACT = BASE_URL + "contact";
-    public final static String URL_UNIVERSITY = BASE_URL + "country";
+    public final static String URL_UNIVERSITY = BASE_URL + "university";
+    public final static String URL_UNIVERSITY_DETAIL = BASE_URL + "university/{id}";
 
+    public final static String COUNTRY_ID = "country_id";
+    public final static String COUNTRY_NAME = "country_name";
+    public final static int CODE_SUCCESS = 200;
 }
