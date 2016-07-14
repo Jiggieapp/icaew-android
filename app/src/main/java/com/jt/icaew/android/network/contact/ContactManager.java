@@ -38,4 +38,24 @@ public class ContactManager extends BaseNetworkManager{
     {
         getInstance().getContactUsCountry().enqueue(customCallback);
     }
+
+    public static void getContactUsDetail(final String id, final OnResponseListener onResponseListener)
+    {
+        getContactUsDetail(id, new CustomCallback() {
+            @Override
+            public void onCustomCallbackResponse(Response response) {
+                onResponseListener.onSuccess(response.body());
+            }
+
+            @Override
+            public void onCustomCallbackFailure(String t) {
+
+            }
+        });
+    }
+
+    private static void getContactUsDetail(final String id, final CustomCallback callback)
+    {
+        getInstance().getContactUsDetail(id).enqueue(callback);
+    }
 }

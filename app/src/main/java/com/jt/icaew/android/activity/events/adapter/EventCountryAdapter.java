@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jt.icaew.android.R;
+import com.jt.icaew.android.activity.contact.adapter.ContactUsCountryAdapter;
+import com.jt.icaew.android.listener.OnViewSelectedListener;
 import com.jt.icaew.android.network.event.EventResult;
 
 import java.util.ArrayList;
@@ -24,17 +26,19 @@ public class EventCountryAdapter extends RecyclerView.Adapter<EventCountryAdapte
 
     Context context;
     ArrayList<EventResult.Data> data;
+    OnViewSelectedListener onViewSelectedListener;
 
-    public EventCountryAdapter(Context context, ArrayList<EventResult.Data> data)
+    public EventCountryAdapter(Context context, ArrayList<EventResult.Data> data, OnViewSelectedListener listener)
     {
         this.context = context;
         this.data = data;
+        this.onViewSelectedListener = listener;
     }
 
     @Override
     public EventCountryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_event_country, parent, false);
-        return new EventCountryViewHolder(view);
+        return new EventCountryViewHolder(view, onViewSelectedListener);
     }
 
 
@@ -53,6 +57,7 @@ public class EventCountryAdapter extends RecyclerView.Adapter<EventCountryAdapte
     }
 
     static class EventCountryViewHolder extends RecyclerView.ViewHolder
+        implements View.OnClickListener
     {
         @BindView(R.id.image_country_flag)
         ImageView imageCountry;
@@ -60,9 +65,22 @@ public class EventCountryAdapter extends RecyclerView.Adapter<EventCountryAdapte
         @BindView(R.id.lbl_country_name)
         TextView lblCountryName;
 
-        public EventCountryViewHolder(View itemView) {
+        EventResult.Data data;
+        OnViewSelectedListener onViewSelectedListener;
+
+        public EventCountryViewHolder(View itemView, OnViewSelectedListener listener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            this.onViewSelectedListener = listener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(onViewSelectedListener != null)
+                onViewSelectedListener.onViewSelected(data);
         }
     }
+
+
 }

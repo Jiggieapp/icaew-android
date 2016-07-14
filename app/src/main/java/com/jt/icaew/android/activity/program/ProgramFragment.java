@@ -14,6 +14,7 @@ import com.jt.icaew.android.activity.BaseFragment;
 import com.jt.icaew.android.activity.program.adapter.ProgramAdapter;
 import com.jt.icaew.android.activity.program.detail.ProgramDetailActivity;
 import com.jt.icaew.android.network.program.ProgramResult;
+import com.jt.icaew.android.utils.Constant;
 import com.jt.icaew.android.utils.Utils;
 
 import butterknife.BindView;
@@ -57,7 +58,10 @@ public class ProgramFragment extends BaseFragment
     }
 
     @Override
-    public void onProgramSelected(String programId) {
-        getActivityController().redirect(ProgramDetailActivity.class);
+    public void onProgramSelected(final ProgramResult.Data data) {
+        Bundle bundle = new Bundle();
+        bundle.putString(Constant.PARAM_PROGRAM_ID, data.id + "");
+        bundle.putString(Constant.PARAM_PROGRAM_NAME, data.title);
+        getActivityController().redirect(ProgramDetailActivity.class, bundle);
     }
 }

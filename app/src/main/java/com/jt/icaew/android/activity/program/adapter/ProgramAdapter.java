@@ -86,12 +86,12 @@ public class ProgramAdapter extends RecyclerView.Adapter<ProgramAdapter.ProgramV
         @Override
         public void onClick(View v) {
             if(listener != null)
-                listener.onProgramSelected(data.id + "");
+                listener.onProgramSelected(data);
         }
     }
 
     public interface OnProgramSelectedListener
     {
-        void onProgramSelected(String programId);
+        void onProgramSelected(ProgramResult.Data data);
     }
 }

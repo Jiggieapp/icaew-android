@@ -24,21 +24,24 @@ public class ContactUsCountryAdapter extends RecyclerView.Adapter<ContactUsCount
 
     Context context;
     ArrayList<ContactResult.Data> data;
+    OnViewSelectedListener onViewSelectedListener;
 
-    public ContactUsCountryAdapter(Context context, ArrayList<ContactResult.Data> data)
+    public ContactUsCountryAdapter(Context context, ArrayList<ContactResult.Data> data, OnViewSelectedListener listener)
     {
         this.context = context;
         this.data = data;
+        this.onViewSelectedListener = listener;
     }
 
     @Override
     public ContactUsCountryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_contact_us_country, parent, false);
-        return new ContactUsCountryViewHolder(view);
+        return new ContactUsCountryViewHolder(view, onViewSelectedListener);
     }
 
     @Override
     public void onBindViewHolder(ContactUsCountryViewHolder holder, int position) {
+        holder.data = data.get(position);
         final String name = data.get(position).country_name;
         final String url = data.get(position).image;
         holder.lblContactUsCountryName.setText(name);
@@ -52,6 +55,7 @@ public class ContactUsCountryAdapter extends RecyclerView.Adapter<ContactUsCount
     }
 
     static class ContactUsCountryViewHolder extends RecyclerView.ViewHolder
+        implements View.OnClickListener
     {
         @BindView(R.id.image_contact_us_country_flag)
         ImageView imageCountry;
@@ -59,10 +63,26 @@ public class ContactUsCountryAdapter extends RecyclerView.Adapter<ContactUsCount
         @BindView(R.id.lbl_contact_us_country_name)
         TextView lblContactUsCountryName;
 
-        public ContactUsCountryViewHolder(View itemView) {
+        OnViewSelectedListener onViewSelectedListener;
+        ContactResult.Data data;
+
+        public ContactUsCountryViewHolder(View itemView, OnViewSelectedListener onViewSelectedListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            this.onViewSelectedListener = onViewSelectedListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            if(onViewSelectedListener != null)
+                onViewSelectedListener.onViewSelected(data);
+        }
+    }
+
+    public interface OnViewSelectedListener
+    {
+        void onViewSelected(final ContactResult.Data data);
     }
 
 }

@@ -44,6 +44,7 @@ public class MainActivity extends BaseActivity implements MainView {
         tab.setupWithViewPager(viewPager);
         setupTabIcons();
         //tabLayout.setupWithViewPager(viewPager);
+
     }
 
     protected class MainPageAdapter extends FragmentPagerAdapter {

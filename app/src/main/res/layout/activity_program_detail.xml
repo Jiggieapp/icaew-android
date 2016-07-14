@@ -10,10 +10,14 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:titleTextColor="@android:color/white">
-
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
     </android.support.v7.widget.Toolbar>
+
+    <!--<fragment android:name="com.jt.icaew.android.activity.program.detail.ProgramDetailFragment"
+        android:id="@+id/fragment_program_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,8 +35,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <com.google.android.youtube.player.YouTubePlayerView
+            <!--<com.google.android.youtube.player.YouTubePlayerView
                 android:id="@+id/youtube_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="@dimen/padding_standard_half"
+                android:layout_below="@+id/lbl_program_description"/>-->
+
+            <fragment
+                android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
+                android:id="@+id/fragment_program_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
@@ -41,5 +54,7 @@
         </RelativeLayout>
 
     </ScrollView>
+
+
 
 </RelativeLayout>

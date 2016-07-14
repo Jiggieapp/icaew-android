@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jt.icaew.android.R;
+import com.jt.icaew.android.activity.contact.adapter.ContactUsCountryAdapter;
+import com.jt.icaew.android.listener.OnViewSelectedListener;
+import com.jt.icaew.android.network.contact.ContactResult;
 import com.jt.icaew.android.network.event.EventResult;
 import com.jt.icaew.android.activity.events.adapter.EventCountryAdapter;
 
@@ -19,7 +22,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Wandy on 6/30/2016.
  */
-public class EventsFragment extends Fragment implements EventView{
+public class EventsFragment extends Fragment implements EventView, OnViewSelectedListener {
     private EventPresenterImplementation implementation = new EventPresenterImplementation(this);
     private final String TAG = EventsFragment.class.getSimpleName();
     private EventCountryAdapter adapter;
@@ -43,9 +46,15 @@ public class EventsFragment extends Fragment implements EventView{
 
     @Override
     public void onFinishGetCountry(EventResult eventResult) {
-        adapter = new EventCountryAdapter(this.getContext(), eventResult.data);
+        adapter = new EventCountryAdapter(this.getContext(), eventResult.data, this);
         GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(), 2);
         this.recylerCountry.setLayoutManager(layoutManager);
         recylerCountry.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void onViewSelected(EventResult.Data data) {
+
     }
 }

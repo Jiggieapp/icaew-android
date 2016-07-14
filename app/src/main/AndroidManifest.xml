@@ -3,14 +3,13 @@
     package="com.jt.icaew.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppCustomTheme">
-
-
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +17,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity"></activity>
-        <activity android:name=".activity.program.detail.ProgramDetailActivity"></activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/SplashTheme" />
+        <activity
+            android:name=".activity.program.detail.ProgramDetailActivity"
+            android:theme="@style/SplashTheme" />
+        <activity
+            android:name=".activity.contact.detail.ContactDetailActivity"
+            android:theme="@style/SplashTheme" />
+        <activity android:name=".activity.events.detail.EventDetailActivity"></activity>
     </application>
 
 </manifest>

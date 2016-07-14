@@ -3,6 +3,7 @@ package com.jt.icaew.android.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 /**
@@ -25,17 +26,23 @@ public class ActivityController extends Activity{
         return activity;
     }
 
-    protected Context getContext()
+    public Context getContext()
     {
         return context;
     }
 
-    public void redirect(Class<? extends Activity> target)
+    public void redirect(Class<? extends Activity> target, Bundle bundle)
     {
         Intent i = new Intent(getActivity().getApplicationContext()
                 , target);
+        i.putExtra("bundle", bundle);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getActivity().getApplicationContext().startActivity(i);
+    }
+
+    public void redirect(Class<? extends Activity> target)
+    {
+        redirect(target, null);
     }
 
 }
