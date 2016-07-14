@@ -1,15 +1,15 @@
 package com.jt.icaew.android.activity.program.detail;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
-import com.google.android.youtube.player.YouTubePlayerView;
 import com.jt.icaew.android.R;
 import com.jt.icaew.android.activity.BaseActivity;
 import com.jt.icaew.android.activity.program.ProgramPresenterImplementation;
@@ -24,9 +24,16 @@ import butterknife.ButterKnife;
  * Created by Wandy on 7/12/2016.
  */
 public class ProgramDetailActivity extends BaseActivity
-        implements YouTubePlayer.OnInitializedListener, ProgramView.OnFinishGetProgramDetailListener
-{
+        implements YouTubePlayer.OnInitializedListener, ProgramView.OnFinishGetProgramDetailListener {
     private final String TAG = ProgramDetailActivity.class.getSimpleName();
+    @BindView(R.id.lin_share)
+    LinearLayout linShare;
+    @BindView(R.id.lin_like)
+    LinearLayout linLike;
+    @BindView(R.id.lin_inquiry)
+    LinearLayout linInquiry;
+    @BindView(R.id.lin_info)
+    LinearLayout linInfo;
     private ProgramPresenterImplementation implementation;
     private String videoId;
     private static final int RECOVERY_DIALOG_REQUEST = 1;
@@ -37,9 +44,10 @@ public class ProgramDetailActivity extends BaseActivity
     @Override
     public void onCreate() {
         setContentView(R.layout.activity_program_detail);
+        ButterKnife.bind(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if(toolbar != null) {
+        if (toolbar != null) {
             super.setSupportActionBar(toolbar);
             final String programName = getIntent().getBundleExtra("bundle")
                     .getString(Constant.PARAM_PROGRAM_NAME);
@@ -58,6 +66,35 @@ public class ProgramDetailActivity extends BaseActivity
         implementation.setOnFinishGetProgramDetailListener(this);
         final String programId = getIntent().getBundleExtra("bundle").getString(Constant.PARAM_PROGRAM_ID);
         implementation.getProgramDetail(programId);
+
+        linShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharePrograme();
+            }
+        });
+
+        linLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        linInquiry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendEmail();
+            }
+        });
+
+        linInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendEmail();
+            }
+        });
+
     }
 
     @Override
@@ -95,16 +132,29 @@ public class ProgramDetailActivity extends BaseActivity
         }
     }
 
-    private String getVideoId(final String original)
-    {
+    private String getVideoId(final String original) {
         final String divider = "?v=";
-        if(original.contains(divider))
-        {
+        if (original.contains(divider)) {
             //StringTokenizer tokenizer = new StringTokenizer("?v=");
             final int index = original.indexOf(divider);
-            String result = original.substring(index+3, original.length());
+            String result = original.substring(index + 3, original.length());
             return result;
-        }
-        else return original;
+        } else return original;
+    }
+
+    private void sharePrograme() {
+        Intent i = new Intent(Intent.ACTION_SEND)
+                .putExtra(Intent.EXTRA_TEXT, "share content")
+                .putExtra(Intent.EXTRA_SUBJECT, "ICAEW");
+        i.setType("text/plain");
+        startActivity(Intent.createChooser
+                (i, "Share"));
+    }
+
+    private void sendEmail() {
+        final Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "icaew@edumail.com", null));
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"icaew@edumail.com"}); // hack for android 4.3
+        intent.putExtra(Intent.EXTRA_SUBJECT, "ICAEW");
+        super.startActivity(Intent.createChooser(intent, "Email"));
     }
 }
