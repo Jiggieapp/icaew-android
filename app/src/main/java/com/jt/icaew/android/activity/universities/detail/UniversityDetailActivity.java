@@ -56,7 +56,7 @@ public class UniversityDetailActivity extends BaseActivity implements University
             super.setSupportActionBar(toolbar);
             final String programName = getIntent().getStringExtra(Constant.COUNTRY_NAME);
 
-            getSupportActionBar().setTitle(programName);
+            getSupportActionBar().setTitle(programName.toUpperCase());
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -68,7 +68,9 @@ public class UniversityDetailActivity extends BaseActivity implements University
     public void onFinishGetUniversityDetail(UniversityListResult universityListResult) {
         UniversityListResult.Data data = universityListResult.getData().get(0);
 
-        lblProgramDescription.setText(getResources().getString(R.string.app_name));
+        if (data.getDescription() != null && !data.getDescription().isEmpty()) {
+            lblProgramDescription.setText(data.getDescription());
+        }
         if (data.getEmail() != null && !data.getEmail().isEmpty()) {
             lblEmailFill.setText(data.getEmail());
         }
