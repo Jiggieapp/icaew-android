@@ -6,9 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.util.Util;
+import com.bumptech.glide.Glide;
 import com.jt.icaew.android.R;
 import com.jt.icaew.android.network.about.AboutResult;
 import com.jt.icaew.android.utils.Utils;
@@ -21,6 +22,8 @@ import butterknife.ButterKnife;
  */
 public class AboutFragment extends Fragment implements AboutView {
 
+    @BindView(R.id.img_banner)
+    ImageView imgBanner;
     private AboutPresenterImplementation implementation = new AboutPresenterImplementation(this);
     private final String TAG = AboutFragment.class.getSimpleName();
 
@@ -43,7 +46,8 @@ public class AboutFragment extends Fragment implements AboutView {
 
     @Override
     public void onFinishGetAbout(AboutResult aboutResult) {
-        Utils.d(TAG, "aboutresult "+ aboutResult.data.description);
+        Utils.d(TAG, "aboutresult " + aboutResult.data.description);
         lblAboutUs.setText(aboutResult.data.title);
+        Glide.with(getActivity()).load(aboutResult.data.image).into(imgBanner);
     }
 }
