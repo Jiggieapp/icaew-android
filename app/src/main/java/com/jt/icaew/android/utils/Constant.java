@@ -14,9 +14,15 @@ public class Constant {
     public final static String URL_ABOUT = BASE_URL + "about";
     public final static String URL_CONTACT = BASE_URL + "contact";
     public final static String URL_CONTACT_DETAIL = BASE_URL + "contact/{id}";
+    public final static String URL_UNIVERSITY = BASE_URL + "university";
+    public final static String URL_UNIVERSITY_DETAIL = BASE_URL + "university/{id}";
 
     public final static String PARAM_PROGRAM_ID = "program_id";
     public final static String PARAM_PROGRAM_NAME = "program_name";
     public final static String PARAM_COUNTRY_ID = "country_id";
     public final static String PARAM_COUNTRY_NAME = "country_name";
+
+    public final static String COUNTRY_ID = "country_id";
+    public final static String COUNTRY_NAME = "country_name";
+    public final static int CODE_SUCCESS = 200;
 }

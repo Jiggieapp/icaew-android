@@ -27,6 +27,7 @@
             android:name=".activity.contact.detail.ContactDetailActivity"
             android:theme="@style/SplashTheme" />
         <activity android:name=".activity.events.detail.EventDetailActivity"></activity>
+        <activity android:name=".activity.universities.detail.UniversityDetailActivity"></activity>
     </application>
 
 </manifest>
