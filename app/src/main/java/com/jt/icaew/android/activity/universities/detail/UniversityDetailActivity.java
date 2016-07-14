@@ -48,9 +48,18 @@ public class UniversityDetailActivity extends BaseActivity implements University
         implementation = new UniversityPresenterImplementation();
         implementation.setOnFinishGetUniversityDetailListener(this);
 
-        setSupportActionBar(toolbar);
+        /*setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getIntent().getStringExtra(Constant.COUNTRY_NAME));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if(toolbar != null) {
+            super.setSupportActionBar(toolbar);
+            final String programName = getIntent().getStringExtra(Constant.COUNTRY_NAME);
+
+            getSupportActionBar().setTitle(programName);
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         implementation.getUniversityDetail(getIntent().getStringExtra(Constant.COUNTRY_ID));
     }

@@ -9,7 +9,7 @@
     <dimen name="custom_tab_padding_bottom">8dp</dimen>
 
     <dimen name="padding_standard">16dp</dimen>
-    <dimen name="padding_standard_half">16dp</dimen>
+    <dimen name="padding_standard_half">8dp</dimen>
     <dimen name="padding_standard_left">16dp</dimen>
     <dimen name="padding_standard_right">16dp</dimen>
     <dimen name="padding_standard_top">16dp</dimen>
