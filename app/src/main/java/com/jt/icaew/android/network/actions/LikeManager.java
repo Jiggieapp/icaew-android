@@ -26,20 +26,17 @@ public class LikeManager extends BaseNetworkManager {
 
     public static void putLike(final String id, final OnResponseListener onResponseListener)
     {
-        if(onResponseListener!=null){
-            putLike(id, new CustomCallback() {
-                @Override
-                public void onCustomCallbackResponse(Response response) {
-                    onResponseListener.onSuccess(response.body());
-                }
+        putLike(id, new CustomCallback() {
+            @Override
+            public void onCustomCallbackResponse(Response response) {
+                onResponseListener.onSuccess(response.body());
+            }
 
-                @Override
-                public void onCustomCallbackFailure(String t) {
-                    onResponseListener.onFailure(404, "failure");
-                }
-            });
-        }
-
+            @Override
+            public void onCustomCallbackFailure(String t) {
+                onResponseListener.onFailure(404, "failure");
+            }
+        });
     }
 
 }

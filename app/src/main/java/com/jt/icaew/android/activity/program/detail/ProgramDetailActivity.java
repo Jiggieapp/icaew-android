@@ -68,10 +68,11 @@ public class ProgramDetailActivity extends BaseActivity
 
         implementation = new ProgramPresenterImplementation();
         implementation.setOnFinishGetProgramDetailListener(this);
-        implementation.setOnFinishLikeProgramListener(this);
+
         final String programId = getIntent().getBundleExtra("bundle").getString(Constant.PARAM_PROGRAM_ID);
         implementation.getProgramDetail(programId);
 
+        implementation.setOnFinishLikeProgramListener(this);
         linShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
