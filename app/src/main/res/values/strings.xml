@@ -9,4 +9,6 @@
 
     <string name="events_in">Events in %1$s</string>
     <string name="icaew_office">ICAEW Office %1$s</string>
+
+    <string name="icaew">ICAEW</string>
 </resources>

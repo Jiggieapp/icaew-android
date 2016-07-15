@@ -3,8 +3,10 @@ package com.jt.icaew.android.activity.contact.detail;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jt.icaew.android.R;
 import com.jt.icaew.android.activity.BaseActivity;
 import com.jt.icaew.android.activity.contact.ContactPresenterImplementation;
@@ -41,6 +43,9 @@ public class ContactDetailActivity extends BaseActivity implements ContactView.O
     @BindView(R.id.lbl_university_website)
     TextView lblUniversityWebsite;
 
+    @BindView(R.id.img_banner)
+    ImageView imgBanner;
+
     private final String TAG = ContactDetailActivity.class.getSimpleName();
     ContactPresenterImplementation implementation;
 
@@ -73,12 +78,21 @@ public class ContactDetailActivity extends BaseActivity implements ContactView.O
 
     @Override
     public void onFinishGetContactDetail(ContactDetailResult contactDetailResult) {
-        final ContactDetailResult.Data dataa = contactDetailResult.data.get(0);
-        lblUniversityAddress.setText(dataa.getAddress());
-        lblUniversityEmail.setText(getResources().getString(R.string.email_university, dataa.getEmail()));
-        lblUniversityPhone.setText(getResources().getString(R.string.phone_university, dataa.getTelp()));
-        lblUniversityFacebook.setText(getResources().getString(R.string.facebook_university, dataa.getFacebook()));
-        lblUniversityWebsite.setText(getResources().getString(R.string.website_university, dataa.getWebsite()));
+        final ContactDetailResult.Data data = contactDetailResult.data.get(0);
+        if(data.getImage().isEmpty())
+        {
+            Glide.with(this).load(R.drawable.default_banner_bg).into(imgBanner);
+        }
+        else
+        {
+            Glide.with(this).load(data.getImage()).into(imgBanner);
+        }
+        lblUniversityName.setText(getResources().getString(R.string.icaew) + " " + data.country_name);
+        lblUniversityAddress.setText(data.getAddress());
+        lblUniversityEmail.setText(data.getEmail());
+        lblUniversityPhone.setText(data.getTelp());
+        lblUniversityFacebook.setText(data.getFacebook());
+        lblUniversityWebsite.setText(data.getWebsite());
     }
 
     private Context getContext()

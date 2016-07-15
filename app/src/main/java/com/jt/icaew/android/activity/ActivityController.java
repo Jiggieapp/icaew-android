@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.FragmentActivity;
 
 /**
@@ -39,6 +40,11 @@ public class ActivityController extends Activity{
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getActivity().getApplicationContext().startActivity(i);
     }
+
+    /*public void redirect(Class<? extends Activity> target, Parcelable parcelable)
+    {
+
+    }*/
 
     public void redirect(Class<? extends Activity> target)
     {

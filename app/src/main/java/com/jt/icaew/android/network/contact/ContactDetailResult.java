@@ -27,6 +27,7 @@ public final class ContactDetailResult {
         public final String created_at;
         public final String updated_at;
         public final String country_name;
+        private final String image;
 
         public String getTelp() {
             if(telp == null)
@@ -58,8 +59,15 @@ public final class ContactDetailResult {
             return address;
         }
 
+        public String getImage()
+        {
+            if(image == null)
+                return "";
+            return image;
+        }
 
-        public Data(long id, long country_id, String telp, String email, String website, String facebook, String address, String created_at, String updated_at, String country_name){
+
+        public Data(long id, long country_id, String telp, String email, String website, String facebook, String address, String created_at, String updated_at, String country_name, String image){
             this.id = id;
             this.country_id = country_id;
             this.telp = telp;
@@ -70,6 +78,7 @@ public final class ContactDetailResult {
             this.created_at = created_at;
             this.updated_at = updated_at;
             this.country_name = country_name;
+            this.image = image;
         }
     }
 }

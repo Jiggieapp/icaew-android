@@ -4,6 +4,7 @@ import com.jt.icaew.android.network.OnResponseListener;
 import com.jt.icaew.android.network.program.ProgramDetailResult;
 import com.jt.icaew.android.network.program.ProgramManager;
 import com.jt.icaew.android.network.program.ProgramResult;
+import com.jt.icaew.android.utils.Utils;
 
 /**
  * Created by Wandy on 7/11/2016.
@@ -39,7 +40,19 @@ public class ProgramPresenterImplementation implements ProgramPresenter {
                 new OnResponseListener() {
                     @Override
                     public void onSuccess(Object object) {
-                        onFinishGetProgramListener.onFinishGetProgram((ProgramResult) object);
+                        ProgramResult result = (ProgramResult) object;
+                        //header
+                        if(result.data != null)
+                        for(ProgramResult.Data temp : result.data)
+                        {
+                            if(temp.is_banner)
+                            {
+                                result.data.add(0, temp);
+                                break;
+                            }
+                        }
+                        //end of header
+                        onFinishGetProgramListener.onFinishGetProgram(result);
                     }
 
                     @Override

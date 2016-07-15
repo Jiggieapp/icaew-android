@@ -50,7 +50,7 @@ public class ProgramFragment extends BaseFragment
 
     @Override
     public void onFinishGetProgram(ProgramResult programResult) {
-        //Utils.d(TAG, programResult.data[0].title);
+        Utils.d("ProgramAdapter ", programResult.data.get(0).title);
         adapter = new ProgramAdapter(this.getContext(), programResult.data, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(super.getContext());
         this.recyclerProgram.setLayoutManager(layoutManager);

@@ -1,7 +1,7 @@
 package com.jt.icaew.android.activity.events;
 
 import com.jt.icaew.android.network.OnResponseListener;
-import com.jt.icaew.android.network.event.EventDetailResult;
+import com.jt.icaew.android.network.event.EventListResult;
 import com.jt.icaew.android.network.event.EventManager;
 
 /**
@@ -27,7 +27,7 @@ public class EventPresenterImplementation implements EventPresenter.GetEventList
         EventManager.getEventDetail(countryId, new OnResponseListener() {
             @Override
             public void onSuccess(Object object) {
-                EventDetailResult result = (EventDetailResult) object;
+                EventListResult result = (EventListResult) object;
                 onFinishGetEventListListener.onFinishGetEventListListener(result);
             }
 

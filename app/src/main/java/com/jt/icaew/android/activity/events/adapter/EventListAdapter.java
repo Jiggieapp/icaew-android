@@ -8,13 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jt.icaew.android.R;
-import com.jt.icaew.android.network.event.EventDetailResult;
-import com.jt.icaew.android.utils.Constant;
+import com.jt.icaew.android.network.event.EventListResult;
 import com.jt.icaew.android.utils.Utils;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,27 +19,29 @@ import butterknife.ButterKnife;
 /**
  * Created by Wandy on 7/14/2016.
  */
-public class EventDetailAdapter extends RecyclerView.Adapter<EventDetailAdapter.EventDetailViewHolder>
+public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListViewHolder>
 {
     private Context context;
-    private ArrayList<EventDetailResult.Data> data;
-    private final String TAG = EventDetailAdapter.class.getSimpleName();
+    private ArrayList<EventListResult.Data> data;
+    private final String TAG = EventListAdapter.class.getSimpleName();
+    OnEventListSelectedListener onViewSelectedListener;
 
-    public EventDetailAdapter(Context context, ArrayList<EventDetailResult.Data> data)
+    public EventListAdapter(Context context, ArrayList<EventListResult.Data> data, OnEventListSelectedListener listener)
     {
         this.context = context;
         this.data = data;
+        this.onViewSelectedListener = listener;
     }
 
     @Override
-    public EventDetailViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public EventListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_event_detail, parent, false);
         ButterKnife.bind(this, view);
-        return new EventDetailViewHolder(view);
+        return new EventListViewHolder(view, onViewSelectedListener);
     }
 
     @Override
-    public void onBindViewHolder(EventDetailViewHolder holder, int position) {
+    public void onBindViewHolder(EventListViewHolder holder, int position) {
         holder.data = data.get(position);
         final String title = holder.data.title;
         final String description = holder.data.description;
@@ -50,29 +49,18 @@ public class EventDetailAdapter extends RecyclerView.Adapter<EventDetailAdapter.
 
         holder.lblTitleProgram.setText(title);
         holder.lblDescriptionProgram.setText(description);
-        holder.lblDescriptionProgram.setText(description);
-        String date = getDate(holder.data.start_date);
+        String date = Utils.getDate(holder.data.start_date);
         date = date.replace(" ", "\n");
         holder.lblInitialProgram.setText(date);
     }
 
-    public String getDate(final String date)
-    {
-        try {
-            final Date startDate = Constant.ISO8601_DATE_FORMAT_UTC.parse(date);
-            return Utils.getTimeForEvent(startDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
 
     @Override
     public int getItemCount() {
         return data.size();
     }
 
-    static class EventDetailViewHolder extends RecyclerView.ViewHolder
+    static class EventListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         @BindView(R.id.lbl_title_program)
         TextView lblTitleProgram;
@@ -83,11 +71,25 @@ public class EventDetailAdapter extends RecyclerView.Adapter<EventDetailAdapter.
         @BindView(R.id.lbl_initial_program)
         TextView lblInitialProgram;
 
-        EventDetailResult.Data data;
+        EventListResult.Data data;
+        OnEventListSelectedListener onViewSelectedListener;
 
-        public EventDetailViewHolder(View itemView) {
+        public EventListViewHolder(View itemView, OnEventListSelectedListener listener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            this.onViewSelectedListener = listener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            if(onViewSelectedListener != null)
+                onViewSelectedListener.onEventListSelected(data);
+        }
+    }
+
+    public interface OnEventListSelectedListener
+    {
+        void onEventListSelected(EventListResult.Data data);
     }
 }
