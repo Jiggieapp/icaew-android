@@ -1,5 +1,6 @@
 package com.jt.icaew.android.activity.program;
 
+import com.jt.icaew.android.network.actions.LikeResult;
 import com.jt.icaew.android.network.program.ProgramDetailResult;
 import com.jt.icaew.android.network.program.ProgramResult;
 
@@ -15,5 +16,9 @@ public interface ProgramView {
     interface OnFinishGetProgramDetailListener
     {
         void onFinishGetProgramDetail(ProgramDetailResult programDetailResult);
+    }
+    interface OnLikeProgramListener
+    {
+        void onLikeProgram(LikeResult likeResult);
     }
 }

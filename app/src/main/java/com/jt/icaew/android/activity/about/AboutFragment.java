@@ -40,6 +40,7 @@ public class AboutFragment extends Fragment implements AboutView {
 
     @BindView(R.id.lbl_about_us)
     TextView lblAboutUs;
+    String desc = "";
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -86,13 +87,14 @@ public class AboutFragment extends Fragment implements AboutView {
 
     @Override
     public void onFinishGetAbout(AboutResult aboutResult) {
-        lblAboutUs.setText(aboutResult.data.description);
+        desc = aboutResult.data.description;
+        lblAboutUs.setText(desc);
         Glide.with(getActivity()).load(aboutResult.data.image).into(imgBanner);
     }
 
     private void sharePrograme() {
         Intent i = new Intent(Intent.ACTION_SEND)
-                .putExtra(Intent.EXTRA_TEXT, "share content")
+                .putExtra(Intent.EXTRA_TEXT, desc)
                 .putExtra(Intent.EXTRA_SUBJECT, "ICAEW");
         i.setType("text/plain");
         startActivity(Intent.createChooser
@@ -100,8 +102,8 @@ public class AboutFragment extends Fragment implements AboutView {
     }
 
     private void sendEmail() {
-        final Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "icaew@edumail.com", null));
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"icaew@edumail.com"}); // hack for android 4.3
+        final Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "", null));
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{""}); // hack for android 4.3
         intent.putExtra(Intent.EXTRA_SUBJECT, "ICAEW");
         super.startActivity(Intent.createChooser(intent, "Email"));
     }

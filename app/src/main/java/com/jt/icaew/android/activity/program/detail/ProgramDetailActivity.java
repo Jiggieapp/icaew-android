@@ -3,6 +3,7 @@ package com.jt.icaew.android.activity.program.detail;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,8 +15,12 @@ import com.jt.icaew.android.R;
 import com.jt.icaew.android.activity.BaseActivity;
 import com.jt.icaew.android.activity.program.ProgramPresenterImplementation;
 import com.jt.icaew.android.activity.program.ProgramView;
+import com.jt.icaew.android.network.OnResponseListener;
+import com.jt.icaew.android.network.actions.LikeManager;
+import com.jt.icaew.android.network.actions.LikeResult;
 import com.jt.icaew.android.network.program.ProgramDetailResult;
 import com.jt.icaew.android.utils.Constant;
+import com.jt.icaew.android.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,7 +29,7 @@ import butterknife.ButterKnife;
  * Created by Wandy on 7/12/2016.
  */
 public class ProgramDetailActivity extends BaseActivity
-        implements YouTubePlayer.OnInitializedListener, ProgramView.OnFinishGetProgramDetailListener {
+        implements YouTubePlayer.OnInitializedListener, ProgramView.OnFinishGetProgramDetailListener, ProgramView.OnLikeProgramListener {
     private final String TAG = ProgramDetailActivity.class.getSimpleName();
     @BindView(R.id.lin_share)
     LinearLayout linShare;
@@ -40,6 +45,7 @@ public class ProgramDetailActivity extends BaseActivity
 
     @BindView(R.id.lbl_program_description)
     TextView lblProgramDescription;
+    String desc = "", url = "";
 
     @Override
     public void onCreate() {
@@ -63,9 +69,11 @@ public class ProgramDetailActivity extends BaseActivity
 
         implementation = new ProgramPresenterImplementation();
         implementation.setOnFinishGetProgramDetailListener(this);
+
         final String programId = getIntent().getBundleExtra("bundle").getString(Constant.PARAM_PROGRAM_ID);
         implementation.getProgramDetail(programId);
 
+        implementation.setOnFinishLikeProgramListener(this);
         linShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +84,7 @@ public class ProgramDetailActivity extends BaseActivity
         linLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                implementation.postLike(programId);
             }
         });
 
@@ -100,6 +108,8 @@ public class ProgramDetailActivity extends BaseActivity
     public void onFinishGetProgramDetail(ProgramDetailResult programDetailResult) {
         //Utils.d(TAG, programDetailResult.data.description);
         //youTubeView.initialize(Constant.DEVELOPER_KEY, this);
+        desc = programDetailResult.data.description;
+        url = programDetailResult.data.youtube;
         lblProgramDescription.setText(programDetailResult.data.description);
         videoId = getVideoId(programDetailResult.data.youtube);
         // Initializing video player with developer key
@@ -143,7 +153,7 @@ public class ProgramDetailActivity extends BaseActivity
 
     private void sharePrograme() {
         Intent i = new Intent(Intent.ACTION_SEND)
-                .putExtra(Intent.EXTRA_TEXT, "share content")
+                .putExtra(Intent.EXTRA_TEXT, desc+"\n\n"+url)
                 .putExtra(Intent.EXTRA_SUBJECT, "ICAEW");
         i.setType("text/plain");
         startActivity(Intent.createChooser
@@ -151,9 +161,14 @@ public class ProgramDetailActivity extends BaseActivity
     }
 
     private void sendEmail() {
-        final Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "icaew@edumail.com", null));
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"icaew@edumail.com"}); // hack for android 4.3
+        final Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "", null));
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{""}); // hack for android 4.3
         intent.putExtra(Intent.EXTRA_SUBJECT, "ICAEW");
         super.startActivity(Intent.createChooser(intent, "Email"));
+    }
+
+    @Override
+    public void onLikeProgram(LikeResult likeResult) {
+        Log.d(TAG, "like success");
     }
 }
