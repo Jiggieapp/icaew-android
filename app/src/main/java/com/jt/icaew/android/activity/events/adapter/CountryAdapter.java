@@ -21,13 +21,13 @@ import butterknife.ButterKnife;
 /**
  * Created by Wandy on 7/11/2016.
  */
-public class EventCountryAdapter extends RecyclerView.Adapter<EventCountryAdapter.EventCountryViewHolder>{
+public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.EventCountryViewHolder>{
 
     Context context;
     ArrayList<CountryResult.Data> data;
     OnViewSelectedListener onViewSelectedListener;
 
-    public EventCountryAdapter(Context context, ArrayList<CountryResult.Data> data, OnViewSelectedListener listener)
+    public CountryAdapter(Context context, ArrayList<CountryResult.Data> data, OnViewSelectedListener listener)
     {
         this.context = context;
         this.data = data;

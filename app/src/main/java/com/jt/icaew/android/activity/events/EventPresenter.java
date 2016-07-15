@@ -5,13 +5,8 @@ package com.jt.icaew.android.activity.events;
  */
 public interface EventPresenter {
 
-    interface GetEvents
+    interface GetEventListListener
     {
-        void getEvents();
-    }
-
-    interface GetEventDetailListener
-    {
-        void getEventDetail(final String countryId);
+        void getEventList(final String countryId);
     }
 }

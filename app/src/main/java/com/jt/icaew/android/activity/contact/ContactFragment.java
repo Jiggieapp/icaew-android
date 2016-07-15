@@ -10,12 +10,11 @@ import android.view.ViewGroup;
 
 import com.jt.icaew.android.R;
 import com.jt.icaew.android.activity.BaseFragment;
-import com.jt.icaew.android.activity.contact.adapter.ContactUsCountryAdapter;
 import com.jt.icaew.android.activity.contact.detail.ContactDetailActivity;
-import com.jt.icaew.android.activity.events.EventPresenterImplementation;
-import com.jt.icaew.android.activity.events.EventView;
-import com.jt.icaew.android.activity.events.adapter.EventCountryAdapter;
+import com.jt.icaew.android.activity.country.CountryView;
+import com.jt.icaew.android.activity.events.adapter.CountryAdapter;
 import com.jt.icaew.android.listener.OnViewSelectedListener;
+import com.jt.icaew.android.network.country.CountryPresenterImplementation;
 import com.jt.icaew.android.network.event.CountryResult;
 import com.jt.icaew.android.utils.Constant;
 
@@ -26,10 +25,10 @@ import butterknife.ButterKnife;
  * Created by Wandy on 6/30/2016.
  */
 public class ContactFragment extends BaseFragment
-        implements EventView.OnFinishGetCountryListener, OnViewSelectedListener{
+        implements CountryView.OnFinishGetCountryListener, OnViewSelectedListener{
     private final String TAG = ContactFragment.class.getSimpleName();
-    private EventPresenterImplementation implementation = new EventPresenterImplementation();
-    EventCountryAdapter adapter;
+    private CountryPresenterImplementation implementation = new CountryPresenterImplementation();
+    CountryAdapter adapter;
 
     @BindView(R.id.recycler_contact_us_country)
     RecyclerView recyclerCountry;
@@ -38,7 +37,7 @@ public class ContactFragment extends BaseFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         implementation.setOnFinishGetCountryListener(this);
-        implementation.getEvents();
+        implementation.getCountries();
     }
 
     @Nullable
@@ -59,7 +58,7 @@ public class ContactFragment extends BaseFragment
 
     @Override
     public void onFinishGetCountry(CountryResult countryResult) {
-        adapter = new EventCountryAdapter(this.getContext(), countryResult.data, this);
+        adapter = new CountryAdapter(this.getContext(), countryResult.data, this);
         GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(), 2);
         this.recyclerCountry.setLayoutManager(layoutManager);
         recyclerCountry.setAdapter(adapter);

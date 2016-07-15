@@ -26,8 +26,11 @@
         <activity
             android:name=".activity.contact.detail.ContactDetailActivity"
             android:theme="@style/SplashTheme" />
-        <activity android:name=".activity.events.detail.EventDetailActivity"></activity>
+        <activity android:name=".activity.events.detail.EventListActivity"></activity>
         <activity android:name=".activity.universities.detail.UniversityDetailActivity"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="00fd18220f391f657cb53b7830f04e5efd103e49" />
     </application>
 
 </manifest>

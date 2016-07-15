@@ -1,6 +1,5 @@
 package com.jt.icaew.android.activity.events.detail;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 
 import com.jt.icaew.android.R;
 import com.jt.icaew.android.activity.BaseActivity;
-import com.jt.icaew.android.activity.events.EventPresenter;
 import com.jt.icaew.android.activity.events.EventPresenterImplementation;
 import com.jt.icaew.android.activity.events.EventView;
 import com.jt.icaew.android.activity.events.adapter.EventDetailAdapter;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class EventDetailActivity extends BaseActivity implements EventView.OnFinishGetEventDetailListener
+public class EventListActivity extends BaseActivity implements EventView.OnFinishGetEventListListener
 {
     @BindView(R.id.recycler_events)
     RecyclerView recyclerEvents;
@@ -48,16 +46,16 @@ public class EventDetailActivity extends BaseActivity implements EventView.OnFin
             }
         }
         implementation = new EventPresenterImplementation();
-        implementation.setOnFinishGetEventDetailListener(this);
+        implementation.setOnFinishGetEventListListener(this);
 
         if (bundle != null) {
             final String id = bundle.getString(Constant.PARAM_COUNTRY_ID);
-            implementation.getEventDetail(id);
+            implementation.getEventList(id);
         }
     }
 
     @Override
-    public void onFinishGetEventDetailListener(EventDetailResult eventDetailResult) {
+    public void onFinishGetEventListListener(EventDetailResult eventDetailResult) {
         ArrayList<EventDetailResult.Data> data = eventDetailResult.data;
         adapter = new EventDetailAdapter(this, data);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

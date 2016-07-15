@@ -21,26 +21,6 @@ public class EventManager extends BaseNetworkManager {
         return instance;
     }
 
-    public static void getEvent(final OnResponseListener onResponseListener)
-    {
-        getEvent(new CustomCallback() {
-            @Override
-            public void onCustomCallbackResponse(Response response) {
-                onResponseListener.onSuccess(response.body());
-            }
-
-            @Override
-            public void onCustomCallbackFailure(String t) {
-
-            }
-        });
-    }
-
-    private static void getEvent(final CustomCallback callback)
-    {
-        getInstance().getCountry().enqueue(callback);
-    }
-
     public static void getEventDetail(final String countryId, final OnResponseListener onResponseListener) {
         getEventDetail(countryId, new CustomCallback() {
             @Override

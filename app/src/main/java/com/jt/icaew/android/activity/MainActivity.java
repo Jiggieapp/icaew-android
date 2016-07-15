@@ -41,6 +41,7 @@ public class MainActivity extends BaseActivity implements MainView {
         adapter = new MainPageAdapter
                 (getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(adapter.getCount());
         tab.setupWithViewPager(viewPager);
         setupTabIcons();
         //tabLayout.setupWithViewPager(viewPager);

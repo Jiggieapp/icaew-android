@@ -30,6 +30,4 @@ public abstract class AbstractBaseActivity extends AppCompatActivity{
     }
 
     public abstract void onCreate();
-
-
 }
