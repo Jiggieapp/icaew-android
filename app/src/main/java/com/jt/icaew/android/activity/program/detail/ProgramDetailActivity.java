@@ -3,6 +3,7 @@ package com.jt.icaew.android.activity.program.detail;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,6 +15,9 @@ import com.jt.icaew.android.R;
 import com.jt.icaew.android.activity.BaseActivity;
 import com.jt.icaew.android.activity.program.ProgramPresenterImplementation;
 import com.jt.icaew.android.activity.program.ProgramView;
+import com.jt.icaew.android.network.OnResponseListener;
+import com.jt.icaew.android.network.actions.LikeManager;
+import com.jt.icaew.android.network.actions.LikeResult;
 import com.jt.icaew.android.network.program.ProgramDetailResult;
 import com.jt.icaew.android.utils.Constant;
 
@@ -24,7 +28,7 @@ import butterknife.ButterKnife;
  * Created by Wandy on 7/12/2016.
  */
 public class ProgramDetailActivity extends BaseActivity
-        implements YouTubePlayer.OnInitializedListener, ProgramView.OnFinishGetProgramDetailListener {
+        implements YouTubePlayer.OnInitializedListener, ProgramView.OnFinishGetProgramDetailListener, ProgramView.OnLikeProgramListener {
     private final String TAG = ProgramDetailActivity.class.getSimpleName();
     @BindView(R.id.lin_share)
     LinearLayout linShare;
@@ -63,6 +67,7 @@ public class ProgramDetailActivity extends BaseActivity
 
         implementation = new ProgramPresenterImplementation();
         implementation.setOnFinishGetProgramDetailListener(this);
+        implementation.setOnFinishLikeProgramListener(this);
         final String programId = getIntent().getBundleExtra("bundle").getString(Constant.PARAM_PROGRAM_ID);
         implementation.getProgramDetail(programId);
 
@@ -76,7 +81,7 @@ public class ProgramDetailActivity extends BaseActivity
         linLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                implementation.postLike(programId);
             }
         });
 
@@ -155,5 +160,10 @@ public class ProgramDetailActivity extends BaseActivity
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"icaew@edumail.com"}); // hack for android 4.3
         intent.putExtra(Intent.EXTRA_SUBJECT, "ICAEW");
         super.startActivity(Intent.createChooser(intent, "Email"));
+    }
+
+    @Override
+    public void onLikeProgram(LikeResult likeResult) {
+        Log.d(TAG, "like success");
     }
 }
