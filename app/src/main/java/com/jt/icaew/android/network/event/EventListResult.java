@@ -5,12 +5,12 @@ import java.util.ArrayList;
 /**
  * Created by Wandy on 7/14/2016.
  */
-public final class EventDetailResult   {
+public final class EventListResult {
     public final long code;
     public final String message;
     public final ArrayList<Data> data;
 
-    public EventDetailResult(long code, String message, ArrayList<Data> data){
+    public EventListResult(long code, String message, ArrayList<Data> data){
         this.code = code;
         this.message = message;
         this.data = data;
@@ -27,8 +27,9 @@ public final class EventDetailResult   {
         public final String created_at;
         public final String updated_at;
         public final String country_name;
+        public final String summary;
 
-        public Data(long id, long country_id, String title, String description, String image, String start_date, String end_date, String created_at, String updated_at, String country_name){
+        public Data(long id, long country_id, String title, String description, String image, String start_date, String end_date, String created_at, String updated_at, String country_name, String summary){
             this.id = id;
             this.country_id = country_id;
             this.title = title;
@@ -39,6 +40,7 @@ public final class EventDetailResult   {
             this.created_at = created_at;
             this.updated_at = updated_at;
             this.country_name = country_name;
+            this.summary = summary;
         }
     }
 }

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.jt.icaew.android.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -45,5 +46,17 @@ public class Utils {
         }
         else format.setTimeZone(TimeZone.getTimeZone("GMT+" + timezone));
         return format;
+    }
+
+    public static String getDate(final String date)
+    {
+        //return date dalam bentuk Jan 16 atau Apr 28
+        try {
+            final Date startDate = Constant.ISO8601_DATE_FORMAT_UTC.parse(date);
+            return Utils.getTimeForEvent(startDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

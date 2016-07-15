@@ -26,6 +26,11 @@ public class Constant {
     public final static String PARAM_COUNTRY_ID = "country_id";
     public final static String PARAM_COUNTRY_NAME = "country_name";
     public static final String PARAM_TOOLBAR_TITLE = "toolbar_title";
+    public static final String PARAM_EVENT_DESCRIPTION = "event_description";
+    public static final String PARAM_EVENT_SUMMARY = "event_summary";
+    public static final String PARAM_EVENT_START_DATE = "event_start_date";
+    public static final String PARAM_EVENT_TITLE = "event_title";
+
 
     public final static String COUNTRY_ID = "country_id";
     public final static String COUNTRY_NAME = "country_name";
