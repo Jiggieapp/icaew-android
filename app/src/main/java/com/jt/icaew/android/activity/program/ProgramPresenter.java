@@ -15,4 +15,6 @@ public interface ProgramPresenter {
     //}
     //GetProgramDetail getPr
 
+    void postLike(final String programId);
+
 }

@@ -16,6 +16,7 @@ public class Constant {
     public final static String URL_CONTACT_DETAIL = BASE_URL + "contact/{id}";
     public final static String URL_UNIVERSITY = BASE_URL + "university";
     public final static String URL_UNIVERSITY_DETAIL = BASE_URL + "university/{id}";
+    public final static String URL_LIKE = BASE_URL + "program_like/{id}";
 
     public final static String PARAM_PROGRAM_ID = "program_id";
     public final static String PARAM_PROGRAM_NAME = "program_name";

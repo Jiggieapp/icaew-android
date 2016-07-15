@@ -1,6 +1,10 @@
 package com.jt.icaew.android.activity.program;
 
+import android.util.Log;
+
 import com.jt.icaew.android.network.OnResponseListener;
+import com.jt.icaew.android.network.actions.LikeManager;
+import com.jt.icaew.android.network.actions.LikeResult;
 import com.jt.icaew.android.network.program.ProgramDetailResult;
 import com.jt.icaew.android.network.program.ProgramManager;
 import com.jt.icaew.android.network.program.ProgramResult;
@@ -12,6 +16,7 @@ public class ProgramPresenterImplementation implements ProgramPresenter {
 
     ProgramView.OnFinishGetProgramListener onFinishGetProgramListener;
     ProgramView.OnFinishGetProgramDetailListener onFinishGetProgramDetailListener;
+    ProgramView.OnLikeProgramListener onLikeProgramListener;
 
     public ProgramPresenterImplementation(ProgramView.OnFinishGetProgramListener onFinishGetProgramListener)
     {
@@ -64,5 +69,26 @@ public class ProgramPresenterImplementation implements ProgramPresenter {
 
             }
         });
+    }
+
+    public void setOnFinishLikeProgramListener(ProgramView.OnLikeProgramListener listener)
+    {
+        this.onLikeProgramListener = listener;
+    }
+
+    @Override
+    public void postLike(String programId) {
+            LikeManager.putLike(programId, new OnResponseListener() {
+                @Override
+                public void onSuccess(Object object) {
+                    onLikeProgramListener.onLikeProgram((LikeResult) object);
+                }
+
+                @Override
+                public void onFailure(int responseCode, String message) {
+                    Log.d("failure", "fail");
+                }
+            });
+
     }
 }
