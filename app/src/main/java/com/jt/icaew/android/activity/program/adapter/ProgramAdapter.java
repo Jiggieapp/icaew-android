@@ -118,7 +118,7 @@ public class ProgramAdapter extends RecyclerView.Adapter</*ProgramAdapter.Progra
 
     public class ProgramHeaderViewHolder extends RecyclerView.ViewHolder
     {
-        @BindView(R.id.img_header)
+        @BindView(R.id.img_banner)
         ImageView imgHeader;
 
         public ProgramHeaderViewHolder(View itemView) {

@@ -86,7 +86,6 @@ public class AboutFragment extends Fragment implements AboutView {
 
     @Override
     public void onFinishGetAbout(AboutResult aboutResult) {
-        Utils.d(TAG, "aboutresult " + aboutResult.data.description);
         lblAboutUs.setText(aboutResult.data.description);
         Glide.with(getActivity()).load(aboutResult.data.image).into(imgBanner);
     }

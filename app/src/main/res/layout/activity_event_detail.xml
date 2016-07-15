@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lbl_initial_program"
-                android:paddingTop="@dimen/padding_standard_half"/>
+                android:paddingTop="@dimen/padding_standard"/>
 
         </RelativeLayout>
 
