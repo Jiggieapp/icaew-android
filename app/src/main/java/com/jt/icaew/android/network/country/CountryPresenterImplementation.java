@@ -27,7 +27,7 @@ public class CountryPresenterImplementation implements CountryPresenter{
             }
 
             @Override
-            public void onFailure(int responseCode, String message) {
+            public void onFailure(String message) {
 
             }
         });

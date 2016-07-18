@@ -5,6 +5,5 @@ package com.jt.icaew.android.activity.contact;
  */
 public interface ContactPresenter {
 
-    void getContactCountry();
     void getContactUsDetail(final String id);
 }

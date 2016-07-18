@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
+import com.jt.icaew.android.App;
 import com.jt.icaew.android.R;
 import com.jt.icaew.android.activity.BaseActivity;
 import com.jt.icaew.android.activity.program.ProgramPresenterImplementation;
@@ -29,7 +30,8 @@ import butterknife.ButterKnife;
  * Created by Wandy on 7/12/2016.
  */
 public class ProgramDetailActivity extends BaseActivity
-        implements YouTubePlayer.OnInitializedListener, ProgramView.OnFinishGetProgramDetailListener, ProgramView.OnLikeProgramListener {
+        implements /*YouTubePlayer.OnInitializedListener*/
+            ProgramView.OnFinishGetProgramDetailListener, ProgramView.OnLikeProgramListener {
     private final String TAG = ProgramDetailActivity.class.getSimpleName();
     @BindView(R.id.lin_share)
     LinearLayout linShare;
@@ -47,6 +49,8 @@ public class ProgramDetailActivity extends BaseActivity
     TextView lblProgramDescription;
     String desc = "", url = "";
 
+    YouTubePlayerSupportFragment frag;
+
     @Override
     public void onCreate() {
         setContentView(R.layout.activity_program_detail);
@@ -62,10 +66,9 @@ public class ProgramDetailActivity extends BaseActivity
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        YouTubePlayerSupportFragment frag =
-                (YouTubePlayerSupportFragment) getSupportFragmentManager()
+        frag = (YouTubePlayerSupportFragment) getSupportFragmentManager()
                         .findFragmentById(R.id.fragment_program_detail);
-        frag.initialize(Constant.DEVELOPER_KEY, this);
+        frag.initialize(Constant.DEVELOPER_KEY, App.initializedListener);
 
         implementation = new ProgramPresenterImplementation();
         implementation.setOnFinishGetProgramDetailListener(this);
@@ -111,20 +114,17 @@ public class ProgramDetailActivity extends BaseActivity
         desc = programDetailResult.data.description;
         url = programDetailResult.data.youtube;
         lblProgramDescription.setText(programDetailResult.data.description);
-        videoId = getVideoId(programDetailResult.data.youtube);
+        App.videoId = getVideoId(programDetailResult.data.youtube);
         // Initializing video player with developer key
     }
 
-    @Override
+    /*@Override
     public void onInitializationFailure(YouTubePlayer.Provider provider,
                                         YouTubeInitializationResult errorReason) {
-        /*if (errorReason.isUserRecoverableError()) {
+        if (errorReason.isUserRecoverableError()) {
             errorReason.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
         } else {
-            String errorMessage = String.format(
-                    getString(R.string.error_player), errorReason.toString());
-            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
-        }*/
+        }
     }
 
     @Override
@@ -139,7 +139,7 @@ public class ProgramDetailActivity extends BaseActivity
             // Hiding player controls
             //player.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS);
         }
-    }
+    }*/
 
     private String getVideoId(final String original) {
         final String divider = "?v=";
@@ -169,6 +169,14 @@ public class ProgramDetailActivity extends BaseActivity
 
     @Override
     public void onLikeProgram(LikeResult likeResult) {
-        Log.d(TAG, "like success");
+        Utils.d(TAG, "like success");
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(frag!=null)
+            frag.onDestroy();
+        super.onDestroy();
+
     }
 }

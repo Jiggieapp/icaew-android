@@ -24,20 +24,6 @@ public class ContactPresenterImplementation implements ContactPresenter {
     }
 
 
-    @Override
-    public void getContactCountry() {
-        /*ContactManager.getContactUsCountry(new OnResponseListener() {
-            @Override
-            public void onSuccess(Object object) {
-                contactListener.onFinishGetContactCountry((ContactResult) object);
-            }
-
-            @Override
-            public void onFailure(int responseCode, String message) {
-
-            }
-        });*/
-    }
 
     @Override
     public void getContactUsDetail(final String id) {
@@ -49,11 +35,9 @@ public class ContactPresenterImplementation implements ContactPresenter {
             }
 
             @Override
-            public void onFailure(int responseCode, String message) {
-
+            public void onFailure(String message) {
+                contactDetailListener.onFailGetContactDetail(message);
             }
         });
     }
-
-
 }

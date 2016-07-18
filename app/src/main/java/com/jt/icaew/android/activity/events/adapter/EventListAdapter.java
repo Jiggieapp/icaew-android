@@ -35,7 +35,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
 
     @Override
     public EventListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_event_detail, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_event_list, parent, false);
         ButterKnife.bind(this, view);
         return new EventListViewHolder(view, onViewSelectedListener);
     }
@@ -44,11 +44,11 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     public void onBindViewHolder(EventListViewHolder holder, int position) {
         holder.data = data.get(position);
         final String title = holder.data.title;
-        final String description = holder.data.description;
+        final String summary = holder.data.summary;
         //final String initial = data.get(position).initial;
 
         holder.lblTitleProgram.setText(title);
-        holder.lblDescriptionProgram.setText(description);
+        holder.lblDescriptionProgram.setText(summary);
         String date = Utils.getDate(holder.data.start_date);
         date = date.replace(" ", "\n");
         holder.lblInitialProgram.setText(date);

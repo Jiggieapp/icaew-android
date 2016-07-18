@@ -50,13 +50,13 @@ public class ContactManager extends BaseNetworkManager{
 
             @Override
             public void onCustomCallbackFailure(String t) {
+                onResponseListener.onFailure(t);
             }
         });
     }
 
     private static void getContactUsDetail(final String id, final CustomCallback callback)
     {
-        Utils.d("code", "oke galore 2");
         getInstance().getContactUsDetail(id).enqueue(callback);
     }
 }

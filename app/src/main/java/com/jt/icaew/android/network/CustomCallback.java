@@ -41,7 +41,10 @@ public abstract class CustomCallback implements Callback {
                 JSONObject temp = new JSONObject(obj);
                 if(Integer.parseInt(temp.get("code").toString()) == 404 || Integer.parseInt(temp.get("code").toString()) == 400)
                 {
-                    onCustomCallbackFailure("");
+                    final String msg = temp.get("message").toString();
+                    if(msg == null)
+                        onCustomCallbackFailure("");
+                    else onCustomCallbackFailure(temp.get("message").toString());
                 }
                 else onCustomCallbackResponse(response);
             } catch (JSONException e) {

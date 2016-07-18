@@ -18,6 +18,7 @@
     <dimen name="circle_width">60dp</dimen>
 
     <dimen name="text_size_big">16sp</dimen>
+    <dimen name="text_size">14sp</dimen>
     <dimen name="text_size_caption">12sp</dimen>
     <dimen name="text_size_title_bar">14sp</dimen>
 

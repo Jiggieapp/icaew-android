@@ -15,6 +15,7 @@ public interface ContactView {
     interface OnFinishGetContactDetailListener
     {
         void onFinishGetContactDetail(ContactDetailResult contactDetailResult);
+        void onFailGetContactDetail(String message);
     }
 
 }

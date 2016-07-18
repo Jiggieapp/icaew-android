@@ -34,7 +34,7 @@ public class LikeManager extends BaseNetworkManager {
 
             @Override
             public void onCustomCallbackFailure(String t) {
-                onResponseListener.onFailure(404, "failure");
+                onResponseListener.onFailure("failure");
             }
         });
     }

@@ -29,7 +29,7 @@ public class AboutPresenterImplementation implements AboutPresenter {
             }
 
             @Override
-            public void onFailure(int responseCode, String message) {
+            public void onFailure(String message) {
 
             }
         });

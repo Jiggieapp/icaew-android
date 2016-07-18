@@ -1,5 +1,6 @@
 package com.jt.icaew.android.activity.events.detail;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -34,7 +35,7 @@ public class EventDetailActivity extends BaseActivity {
     public void onCreate() {
         setContentView(R.layout.activity_event_detail);
         ButterKnife.bind(this);
-        Bundle bundle = getBundle();
+        final Bundle bundle = getBundle();
         if(bundle != null)
         {
             setSupportActionBar(toolbar);
@@ -45,12 +46,24 @@ public class EventDetailActivity extends BaseActivity {
 
             final String date = Utils.getDate(bundle.getString(Constant.PARAM_EVENT_START_DATE));
             final String summary = bundle.getString(Constant.PARAM_EVENT_SUMMARY);
-            final String description = bundle.getString(Constant.PARAM_EVENT_DESCRIPTION);
+
 
             lblInitialProgram.setText(date.replace(" ", "\n"));
             lblTitleProgram.setText(title);
-            lblEventSummary.setText(summary);
-            lblDescriptionProgram.setText(description);
+            lblDescriptionProgram.setText(summary);
+            AsyncTask<String, Void, String> handler = new AsyncTask<String, Void, String>() {
+                @Override
+                protected String doInBackground(String... params) {
+                    final String desc = bundle.getString(Constant.PARAM_EVENT_DESCRIPTION);
+                    return desc;
+                }
+
+                @Override
+                protected void onPostExecute(String s) {
+                    super.onPostExecute(s);
+                    lblEventSummary.setText(s);
+                }
+            }.execute("");
         }
     }
 }

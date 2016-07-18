@@ -5,5 +5,5 @@ package com.jt.icaew.android.network;
  */
 public interface  OnResponseListener {
     void onSuccess(Object object);
-    void onFailure(int responseCode, String message);
+    void onFailure(String message);
 }

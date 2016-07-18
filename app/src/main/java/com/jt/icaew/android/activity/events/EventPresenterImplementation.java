@@ -32,7 +32,7 @@ public class EventPresenterImplementation implements EventPresenter.GetEventList
             }
 
             @Override
-            public void onFailure(int responseCode, String message) {
+            public void onFailure( String message) {
 
             }
         });

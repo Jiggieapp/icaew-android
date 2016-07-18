@@ -54,7 +54,7 @@ public class UniversityPresenterImplementation implements UniversityPresenter {
             }
 
             @Override
-            public void onFailure(int responseCode, String message) {
+            public void onFailure( String message) {
 
             }
         });
@@ -83,7 +83,7 @@ public class UniversityPresenterImplementation implements UniversityPresenter {
             }
 
             @Override
-            public void onFailure(int responseCode, String message) {
+            public void onFailure( String message) {
                 universityDetailListener.onFailureGetUniversity(message);
             }
         });

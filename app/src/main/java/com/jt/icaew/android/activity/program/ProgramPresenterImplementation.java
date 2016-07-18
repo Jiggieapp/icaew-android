@@ -61,7 +61,7 @@ public class ProgramPresenterImplementation implements ProgramPresenter {
                     }
 
                     @Override
-                    public void onFailure(int responseCode, String message) {
+                    public void onFailure( String message) {
 
                     }
                 }
@@ -78,7 +78,7 @@ public class ProgramPresenterImplementation implements ProgramPresenter {
             }
 
             @Override
-            public void onFailure(int responseCode, String message) {
+            public void onFailure( String message) {
 
             }
         });
@@ -98,7 +98,7 @@ public class ProgramPresenterImplementation implements ProgramPresenter {
                 }
 
                 @Override
-                public void onFailure(int responseCode, String message) {
+                public void onFailure( String message) {
                     Log.d("failure", "fail");
                 }
             });

@@ -1,5 +1,6 @@
 package com.jt.icaew.android.activity.universities.detail;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +41,7 @@ public class UniversityDetailActivity extends BaseActivity implements University
     TextView lblEmailFill;
 
     private UniversityPresenterImplementation implementation;
+    private ProgressDialog progressDialog;
 
     @Override
     public void onCreate() {
@@ -61,11 +63,13 @@ public class UniversityDetailActivity extends BaseActivity implements University
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        showProgressDialog();
         implementation.getUniversityDetail(getIntent().getStringExtra(Constant.COUNTRY_ID));
     }
 
     @Override
     public void onFinishGetUniversityDetail(UniversityListResult universityListResult) {
+
         UniversityListResult.Data data = universityListResult.getData().get(0);
 
         if (data.getDescription() != null && !data.getDescription().isEmpty()) {
@@ -80,12 +84,26 @@ public class UniversityDetailActivity extends BaseActivity implements University
         if (data.getAddress() != null && !data.getAddress().isEmpty()) {
             lblAddressFill.setText(data.getAddress());
         }
+        dismissProgressDialog();
     }
 
     @Override
     public void onFailureGetUniversity(String message) {
+        dismissProgressDialog();
         finish();
     }
 
+    private void showProgressDialog()
+    {
+        progressDialog = ProgressDialog.show(this, "", getResources().getString(R.string.please_wait));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    private void dismissProgressDialog()
+    {
+        if(progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
+    }
 
 }

@@ -31,6 +31,7 @@
             android:id="@+id/lbl_title_program"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/img_right_arrow"
             android:layout_toRightOf="@id/lbl_initial_program"
             android:textSize="@dimen/text_size_big"/>
 
@@ -39,9 +40,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lbl_title_program"
+            android:layout_toLeftOf="@+id/img_right_arrow"
             android:layout_toRightOf="@id/lbl_initial_program"
             android:textSize="@dimen/text_size_caption"
             android:maxLines="2"
             android:ellipsize="end"/>
+
+        <ImageView
+            android:id="@+id/img_right_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/r_arrows"
+            android:layout_marginLeft="@dimen/padding_standard_half"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
 </android.support.v7.widget.CardView>

@@ -1,10 +1,12 @@
 package com.jt.icaew.android.activity.contact.detail;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jt.icaew.android.R;
@@ -73,6 +75,7 @@ public class ContactDetailActivity extends BaseActivity implements ContactView.O
 
         implementation = new ContactPresenterImplementation();
         implementation.setOnFinishGetContactDetailListener(this);
+        showProgressDialog();
         implementation.getContactUsDetail(countryId + "");
     }
 
@@ -93,11 +96,33 @@ public class ContactDetailActivity extends BaseActivity implements ContactView.O
         lblUniversityPhone.setText(data.getTelp());
         lblUniversityFacebook.setText(data.getFacebook());
         lblUniversityWebsite.setText(data.getWebsite());
+        dismissProgressDialog();
+    }
+
+    @Override
+    public void onFailGetContactDetail(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        dismissProgressDialog();
+        finish();
     }
 
     private Context getContext()
     {
         return getActivityController().getContext();
+    }
+
+    ProgressDialog progressDialog;
+    private void showProgressDialog()
+    {
+        progressDialog = ProgressDialog.show(this, "", getResources().getString(R.string.please_wait));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    private void dismissProgressDialog()
+    {
+        if(progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 
 }
