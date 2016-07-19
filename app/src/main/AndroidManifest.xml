@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppCustomTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,15 +20,20 @@
         </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:theme="@style/SplashTheme" />
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.program.detail.ProgramDetailActivity"
-            android:theme="@style/SplashTheme" />
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.contact.detail.ContactDetailActivity"
-            android:theme="@style/SplashTheme" />
-        <activity android:name=".activity.events.detail.EventDetailActivity"></activity>
-        <activity android:name=".activity.universities.detail.UniversityDetailActivity"></activity>
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.events.detail.EventDetailActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.universities.detail.UniversityDetailActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
