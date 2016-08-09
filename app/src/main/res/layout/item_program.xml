@@ -33,9 +33,10 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/img_right_arrow"
             android:layout_toRightOf="@id/lbl_initial_program"
-            android:textSize="@dimen/text_size_big"/>
+            android:textSize="@dimen/text_size_big"
+            android:layout_centerInParent="true"/>
 
-        <TextView
+        <!--<TextView
             android:id="@+id/lbl_description_program"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +45,7 @@
             android:layout_toRightOf="@id/lbl_initial_program"
             android:textSize="@dimen/text_size_caption"
             android:maxLines="2"
-            android:ellipsize="end"/>
+            android:ellipsize="end"/>-->
 
         <ImageView
             android:id="@+id/img_right_arrow"

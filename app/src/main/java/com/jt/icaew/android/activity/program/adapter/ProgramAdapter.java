@@ -35,7 +35,6 @@ public class ProgramAdapter extends RecyclerView.Adapter</*ProgramAdapter.Progra
     {
         this.context = context;
         this.data = data;
-        Utils.d(TAG, "data " + data.size());
         this.listener = listener;
     }
 
@@ -66,7 +65,6 @@ public class ProgramAdapter extends RecyclerView.Adapter</*ProgramAdapter.Progra
 
             holder.data = data.get(position);
             holder.lblTitleProgram.setText(title);
-            holder.lblDescriptionProgram.setText(description);
             holder.lblInitialProgram.setText(initial);
         }
         else if(viewHolder instanceof  ProgramHeaderViewHolder)
@@ -92,8 +90,8 @@ public class ProgramAdapter extends RecyclerView.Adapter</*ProgramAdapter.Progra
         @BindView(R.id.lbl_title_program)
         TextView lblTitleProgram;
 
-        @BindView(R.id.lbl_description_program)
-        TextView lblDescriptionProgram;
+        /*@BindView(R.id.lbl_description_program)
+        TextView lblDescriptionProgram;*/
 
         @BindView(R.id.lbl_initial_program)
         TextView lblInitialProgram;

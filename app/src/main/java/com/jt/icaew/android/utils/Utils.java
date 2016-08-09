@@ -59,4 +59,24 @@ public class Utils {
         }
         return "";
     }
+
+    public static String getHtml(final String text)
+    {
+        final String result = text
+                .replace("span style=\"color:", "font color=\"")
+                .replace(";\"","\"")
+                /*.replaceAll("\\r\\n|\\r|\\n", " ")*/
+                .replace("</span>", "</font>")
+                .replace("<li>", "<br/>\u2022")
+                .replace("\t", "")
+                .replace("\n", "")
+                .replace("</li>", "<br/>")
+                .replace("<ul>", "<br/>")
+                .replace("</ul>", "<br/>")
+                .replace("<pre>", "")
+                .replace("\r", "")
+                /*.replace("\\r\\n|\\r|\\n", " ")
+                .replace("<pre>", "")*/;
+        return result;
+    }
 }
