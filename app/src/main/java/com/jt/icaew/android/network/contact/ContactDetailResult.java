@@ -16,6 +16,10 @@ public final class ContactDetailResult {
         this.data = data;
     }
 
+    public ArrayList<Data> getData() {
+        return data;
+    }
+
     public static final class Data {
         public final long id;
         public final long country_id;
