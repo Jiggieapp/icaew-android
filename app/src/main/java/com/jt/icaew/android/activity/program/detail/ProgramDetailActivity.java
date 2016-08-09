@@ -139,7 +139,7 @@ public class ProgramDetailActivity extends BaseActivity
         if(programDetailResult.data.youtube != null)
         {
             youtubeContainer.setVisibility(View.VISIBLE);
-            App.videoId = getVideoId(programDetailResult.data.youtube);
+            App.videoId = Utils.getVideoId(programDetailResult.data.youtube);
             // Initializing video player with developer key
             frag = (YouTubePlayerSupportFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.fragment_program_detail);
@@ -172,15 +172,7 @@ public class ProgramDetailActivity extends BaseActivity
         }
     }*/
 
-    private String getVideoId(final String original) {
-        final String divider = "?v=";
-        if (original.contains(divider)) {
-            //StringTokenizer tokenizer = new StringTokenizer("?v=");
-            final int index = original.indexOf(divider);
-            String result = original.substring(index + 3, original.length());
-            return result;
-        } else return original;
-    }
+
 
     private void sharePrograme() {
         Intent i = new Intent(Intent.ACTION_SEND)

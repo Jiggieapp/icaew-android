@@ -79,4 +79,14 @@ public class Utils {
                 .replace("<pre>", "")*/;
         return result;
     }
+
+    public static String getVideoId(final String original) {
+        final String divider = "?v=";
+        if (original.contains(divider)) {
+            //StringTokenizer tokenizer = new StringTokenizer("?v=");
+            final int index = original.indexOf(divider);
+            String result = original.substring(index + 3, original.length());
+            return result;
+        } else return original;
+    }
 }

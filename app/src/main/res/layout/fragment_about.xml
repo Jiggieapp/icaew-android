@@ -27,12 +27,31 @@
                 android:layout_margin="8dp"
                 android:textSize="14sp"/>
 
+            <RelativeLayout
+                android:id="@+id/youtube_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_below="@id/lbl_about_us"
+                android:layout_marginLeft="@dimen/padding_standard"
+                android:layout_marginRight="@dimen/padding_standard">
+
+                <fragment
+                    android:id="@+id/fragment_about_detail"
+                    android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="@dimen/padding_standard_half"/>
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/lin_actions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_below="@id/lbl_about_us"
+                android:layout_below="@id/youtube_container"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
@@ -125,11 +144,7 @@
                         android:text="More info"
                         android:textSize="12sp"/>
                 </LinearLayout>
-
-
             </LinearLayout>
         </RelativeLayout>
-
     </ScrollView>
-
 </RelativeLayout>

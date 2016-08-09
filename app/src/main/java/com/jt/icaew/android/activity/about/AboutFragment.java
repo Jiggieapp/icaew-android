@@ -11,11 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
+import com.jt.icaew.android.App;
 import com.jt.icaew.android.R;
 import com.jt.icaew.android.network.about.AboutResult;
+import com.jt.icaew.android.utils.Constant;
 import com.jt.icaew.android.utils.Utils;
 
 import butterknife.BindView;
@@ -36,6 +40,10 @@ public class AboutFragment extends Fragment implements AboutView {
     LinearLayout linInquiry;
     @BindView(R.id.lin_info)
     LinearLayout linInfo;
+    @BindView(R.id.youtube_container)
+    RelativeLayout youtubeContainer;
+    YouTubePlayerSupportFragment frag;
+
     private AboutPresenterImplementation implementation = new AboutPresenterImplementation(this);
     private final String TAG = AboutFragment.class.getSimpleName();
 
@@ -91,6 +99,19 @@ public class AboutFragment extends Fragment implements AboutView {
         desc = aboutResult.data.description;
         lblAboutUs.setText(Html.fromHtml(Utils.getHtml(desc.trim())));
         Glide.with(getActivity()).load(aboutResult.data.image).into(imgBanner);
+
+        final String youtube = aboutResult.getData().getYoutube();
+        if(youtube != null && !youtube.isEmpty())
+        {
+            youtubeContainer.setVisibility(View.VISIBLE);
+            App.videoId = Utils.getVideoId(aboutResult.data.getYoutube());
+            // Initializing video player with developer key
+            frag = (YouTubePlayerSupportFragment) getChildFragmentManager()
+                    .findFragmentById(R.id.fragment_about_detail);
+            //Utils.d(TAG, "aboutResult " + App.videoId);
+            frag.initialize(Constant.DEVELOPER_KEY, App.initializedListener);
+        }
+
     }
 
     private void sharePrograme() {

@@ -30,26 +30,10 @@
             android:layout_margin="@dimen/padding_standard"
             android:paddingBottom="@dimen/padding_standard">
 
-            <!--<com.uncopt.android.widget.text.justify.JustifiedTextView
-                android:id="@+id/lbl_program_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                />-->
-
             <TextView
                 android:id="@+id/lbl_program_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <!--<com.google.android.youtube.player.YouTubePlayerView
-                android:id="@+id/youtube_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="@dimen/padding_standard_half"
-                android:layout_below="@+id/lbl_program_description"/>-->
 
             <LinearLayout
                 android:id="@+id/lin_actions"
@@ -160,8 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lin_actions"
-                android:visibility="gone"
-                >
+                android:visibility="gone">
 
                 <fragment
                     android:id="@+id/fragment_program_detail"
@@ -169,8 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="30dp"
-                    android:layout_marginTop="@dimen/padding_standard_half"
-                    />
+                    android:layout_marginTop="@dimen/padding_standard_half"/>
 
             </RelativeLayout>
         </RelativeLayout>

@@ -33,14 +33,16 @@ public final class AboutResult {
         public final String image;
         public final String created_at;
         public final String updated_at;
+        private final String youtube;
 
-        public Data(long id, String title, String description, String image, String created_at, String updated_at){
+        public Data(long id, String title, String description, String image, String created_at, String updated_at, String youtube){
             this.id = id;
             this.title = title;
             this.description = description;
             this.image = image;
             this.created_at = created_at;
             this.updated_at = updated_at;
+            this.youtube = youtube;
         }
 
         public long getId() {
@@ -65,6 +67,11 @@ public final class AboutResult {
 
         public String getUpdated_at() {
             return updated_at;
+        }
+
+        public String getYoutube()
+        {
+            return youtube;
         }
     }
 }

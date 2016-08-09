@@ -47,18 +47,22 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
         holder.data = datas;
 
-        if (datas.getImage().isEmpty()) {
-            Glide.with(a).load(R.drawable.default_banner_bg).into(holder.imgBanner);
-        } else {
-            Glide.with(a).load(datas.getImage()).into(holder.imgBanner);
+        if(position == 0)
+        {
+            if (datas.getImage().isEmpty()) {
+                Glide.with(a).load(R.drawable.default_banner_bg).into(holder.imgBanner);
+            } else {
+                Glide.with(a).load(datas.getImage()).into(holder.imgBanner);
+            }
         }
+        else holder.imgBanner.setVisibility(View.GONE);
+
         holder.lblUniversityName.setText(a.getResources().getString(R.string.icaew) + " " + datas.country_name);
         holder.lblUniversityAddress.setText(datas.getAddress());
         holder.lblUniversityEmail.setText(datas.getEmail());
         holder.lblUniversityPhone.setText(datas.getTelp());
         holder.lblUniversityFacebook.setText(datas.getFacebook());
-        holder.lblUniversityWebsite.setText(datas.getWebsite());
-
+        //holder.lblUniversityWebsite.setText(datas.getWebsite());
     }
 
     @Override
@@ -90,8 +94,8 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         TextView lblUniversityEmail;
         @BindView(R.id.lbl_university_facebook)
         TextView lblUniversityFacebook;
-        @BindView(R.id.lbl_university_website)
-        TextView lblUniversityWebsite;
+        /*@BindView(R.id.lbl_university_website)
+        TextView lblUniversityWebsite;*/
 
         ContactDetailResult.Data data;
         OnContactListSelectedListener onViewSelectedListener;
