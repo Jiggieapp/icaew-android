@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Wandy on 7/10/2016.
@@ -62,12 +64,22 @@ public class Utils {
 
     public static String getHtml(final String text)
     {
+        Pattern pattern = Pattern.compile("'(.*?)'");
+        Matcher matcher = pattern.matcher(text);
+        if (matcher.find())
+        {
+            Utils.d("sulalala", "found " + matcher.group(1));
+        }
         final String result = text
                 .replace("span style=\"color:", "font color=\"")
                 .replace(";\"","\"")
                 /*.replaceAll("\\r\\n|\\r|\\n", " ")*/
                 .replace("</span>", "</font>")
-                .replace("<li>", "<br/>\u2022")
+                //.replace("<li>", "<br/>\u2022 ")
+                //str.replaceAll("\\^([0-9]+)", "<sup>$1</sup>");
+                //.replaceAll("\<li*.*>$", "<br/>\u2022 ")
+                //"'(.*?)'"
+                .replaceAll("<li(.*?)>", "\u2022 ")
                 .replace("\t", "")
                 .replace("\n", "")
                 .replace("</li>", "<br/>")
@@ -75,6 +87,9 @@ public class Utils {
                 .replace("</ul>", "<br/>")
                 .replace("<pre>", "")
                 .replace("\r", "")
+                .replaceAll("<div(.*?)>", "")
+                .replaceAll("</div>", "<br/>")
+                .replace("<br/><br/>", "<br/>")
                 /*.replace("\\r\\n|\\r|\\n", " ")
                 .replace("<pre>", "")*/;
         return result;

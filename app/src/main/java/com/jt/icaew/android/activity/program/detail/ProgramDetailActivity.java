@@ -132,7 +132,8 @@ public class ProgramDetailActivity extends BaseActivity
         desc = programDetailResult.data.description.trim();
         url = programDetailResult.data.youtube;
         Spanned spanned = Html.fromHtml(Utils.getHtml(desc), this, null);
-        lblProgramDescription.setText(/*Html.fromHtml (Utils.getHtml(desc))*/ spanned /*desc*/);
+        lblProgramDescription.setText(/*Html.fromHtml (Utils.getHtml(desc))*/ spanned /*desc*/
+                /*Utils.getHtml(desc)*/);
 
         //lblProgramDescription.setText(/*Html.fromHtml(Utils.getHtml(desc))*/ desc);
         //lblProgramDescription.setText(Html.fromHtml(Utils.getHtml(desc), this, null));
